@@ -46,9 +46,20 @@ critcl::subject {line editor} linenoise readline editline {edit line}
 critcl::tcl 8.5
 
 # # ## ### ##### ######## ############# #####################
-## Declarations of linenoise, same directory as the binding itself.
+## Find the linenoise sources (via its headers).
+#
+# We try to specify both paths for where we expect to find the sources
+# of linenoise itself. Both are given relative to the directory of
+# this file.
+#
+# (1) A sub directory in our sources.
+# (2) A sibling directory to our sources.
 
-critcl::cheaders linenoise/linenoise.h
+if {[catch {
+    critcl::cheaders linenoise/linenoise.h
+}]} {
+    critcl::cheaders ../linenoise/linenoise.h
+}
 
 # # ## ### ##### ######## ############# #####################
 ## Declare the Tcl layer aggregating the C primitives into a Tclish
