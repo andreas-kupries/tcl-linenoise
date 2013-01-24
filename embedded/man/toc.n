@@ -242,6 +242,9 @@ Database Class:	\\fB\\$3\\fR
 doc
 .RS
 .TP
+\fBlinenoise_introduction\fR
+\fIfiles/linenoise_introduction.n\fR: Introduction To Linenoise
+.TP
 \fBlinenoise_sources\fR
 \fIfiles/linenoise_sources.n\fR: Linenoise - How To Get The Sources
 .TP
