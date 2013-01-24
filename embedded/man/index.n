@@ -253,9 +253,6 @@ linenoise_license
 \fBfiles/linenoise_installer.n\fR
 linenoise_install_guide
 .TP
-\fBfiles/linenoise_introduction.n\fR
-linenoise_introduction
-.TP
 \fBfiles/linenoise_sources.n\fR
 linenoise_sources
 .RE
@@ -270,9 +267,6 @@ linenoise_license
 .TP
 \fBfiles/linenoise_installer.n\fR
 linenoise_install_guide
-.TP
-\fBfiles/linenoise_introduction.n\fR
-linenoise_introduction
 .TP
 \fBfiles/linenoise_sources.n\fR
 linenoise_sources
@@ -289,9 +283,6 @@ linenoise_license
 \fBfiles/linenoise_installer.n\fR
 linenoise_install_guide
 .TP
-\fBfiles/linenoise_introduction.n\fR
-linenoise_introduction
-.TP
 \fBfiles/linenoise_sources.n\fR
 linenoise_sources
 .RE
@@ -306,9 +297,6 @@ linenoise_license
 .TP
 \fBfiles/linenoise_installer.n\fR
 linenoise_install_guide
-.TP
-\fBfiles/linenoise_introduction.n\fR
-linenoise_introduction
 .TP
 \fBfiles/linenoise_sources.n\fR
 linenoise_sources
@@ -325,9 +313,6 @@ linenoise_license
 \fBfiles/linenoise_installer.n\fR
 linenoise_install_guide
 .TP
-\fBfiles/linenoise_introduction.n\fR
-linenoise_introduction
-.TP
 \fBfiles/linenoise_sources.n\fR
 linenoise_sources
 .RE
@@ -342,9 +327,6 @@ linenoise_license
 .TP
 \fBfiles/linenoise_installer.n\fR
 linenoise_install_guide
-.TP
-\fBfiles/linenoise_introduction.n\fR
-linenoise_introduction
 .TP
 \fBfiles/linenoise_sources.n\fR
 linenoise_sources
@@ -361,9 +343,6 @@ linenoise_license
 \fBfiles/linenoise_installer.n\fR
 linenoise_install_guide
 .TP
-\fBfiles/linenoise_introduction.n\fR
-linenoise_introduction
-.TP
 \fBfiles/linenoise_sources.n\fR
 linenoise_sources
 .RE
@@ -379,9 +358,6 @@ linenoise_license
 \fBfiles/linenoise_installer.n\fR
 linenoise_install_guide
 .TP
-\fBfiles/linenoise_introduction.n\fR
-linenoise_introduction
-.TP
 \fBfiles/linenoise_sources.n\fR
 linenoise_sources
 .RE
@@ -396,9 +372,6 @@ linenoise_license
 .TP
 \fBfiles/linenoise_installer.n\fR
 linenoise_install_guide
-.TP
-\fBfiles/linenoise_introduction.n\fR
-linenoise_introduction
 .TP
 \fBfiles/linenoise_sources.n\fR
 linenoise_sources

@@ -24,6 +24,7 @@ linenoise history add eta
 linenoise history add omega
 linenoise history add upsilon
 puts "In history: [linenoise history size]"
+puts \t[join [linenoise history list] \n\t]
 
 puts "echo: [linenoise prompt "world> "]"
 

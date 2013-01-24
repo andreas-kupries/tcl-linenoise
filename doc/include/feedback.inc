@@ -1,6 +1,8 @@
 [comment {--- Standard trailer for all manpages in this module --}]
 [section Authors]
-Andreas Kupries, Antirez (C level linenoise)
+Andreas Kupries (Tcl Binding),
+Steve Bennett (extended linenoise C library),
+Salvatore Sanfilippo (Antirez, original linenoise C library).
 
 [section {Bugs, Ideas, Feedback}]
 

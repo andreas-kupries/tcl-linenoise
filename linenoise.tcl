@@ -1,14 +1,31 @@
 # -*- tcl -*-
 # # ## ### ##### ######## ############# #####################
-## A Tcl Binding to antirez's linenoise (Minimal line-editing).
+## A Tcl Binding to antirez's linenoise (Minimal line-editing)
+## as modified and extended by Steve Bennett of Workware.
+##
 ## Copyright (c) 2013 Andreas Kupries http://wiki.tcl.tk/andreas%20kupries
 
-# Notes:
-#   History Size
-#     Default:      100
-#     Min settable:   1 (need one for the current buffer!)
-#     Adding lines disabled for size == 0,
-#     which can't be done through the linenoise API
+# # ## ### ##### ######## ############# #####################
+##
+# Based on    git@github.com:andreas-kupries/linenoise.git
+# Forked from  git@github.com:msteveb/linenoise.git
+# Forked from   git@github.com:antirez/linenoise.git
+#
+# Based on     http://github.com/andreas-kupries/linenoise
+# Forked from   http://github.com/msteveb/linenoise
+# Forked from    http://github.com/antirez/linenoise
+
+# # ## ### ##### ######## ############# #####################
+##
+# Notes and ideas regarding the underlying linenoise C library
+#
+# - Note: Do I need the utf support, or is that term specific.
+# - Note: Use (void)-cast in IGNORE_RC istead of "if (EXPR)"?!
+# - Idea: Handle Page Up/Down keys to jump to history start/end.
+# - Idea: Allow edit mode "hidden input" for password entry and the like.
+# - Idea: Put ^K deleted text into a paste buffer, and allow re-entry
+#         via ^Y (see bash)
+#         Note that ^K works in history of bash, with ^Y in current buffer.
 
 # # ## ### ##### ######## ############# #####################
 ## Requisites
@@ -156,12 +173,10 @@ critcl::cproc linenoise::history_add {char* line} boolean {
     return linenoiseHistoryAdd (line);
 }
 
-# ATTENTION! linenoise does not have an official function to clear the
-#            history. To implement this we are directly accessing
-#            internal functions (1) and variables (2).
 critcl::cproc linenoise::history_clear {} void {
-    freeHistory ();
-    history = 0;
+    /* msteveb/linenoise extension */
+    linenoiseHistoryFree ();
+    /* bugfix! */
     history_len = 0;
 }
 
@@ -185,12 +200,38 @@ critcl::cproc linenoise::history_setmax {int maxlen} boolean {
 
 # ATTENTION! We are poking into the internals of linenoise again.
 critcl::cproc linenoise::history_getmax {} int {
+#if 0
+    return linenoiseHistoryGetMaxLen ();
+#else
     return history_max_len;
+#endif
 }
 
-# ATTENTION! We are poking into the internals of linenoise again.
 critcl::cproc linenoise::history_size {} int {
-    return history_len;
+    /* msteveb/linenoise extension */
+    int len;
+
+    (void) linenoiseHistory (&len);
+    return len;
+}
+
+critcl::cproc linenoise::history_list {} Tcl_Obj* {
+    /* msteveb/linenoise extension */
+    int i, len;
+    char** h;
+    Tcl_Obj* res;
+    Tcl_Obj** lv;
+    h = linenoiseHistory (&len);
+
+    lv = (Tcl_Obj**) ckalloc (len * sizeof (Tcl_Obj*));
+    for (i=0; i < len; i++) {
+       lv [i] = Tcl_NewStringObj (h [i],-1);
+    }
+    res = Tcl_NewListObj (len, lv);
+    ckfree ((char*) lv);
+
+    Tcl_IncrRefCount (res);
+    return res;
 }
 
 # # ## ### ##### ######## ############# #####################
@@ -198,9 +239,10 @@ critcl::cproc linenoise::history_size {} int {
 ## - clear screen
 ## - prompt for input, possibly with completion
 
+if 0 {# may we have this ?
 critcl::cproc linenoise::clear {} void {
     linenoiseClearScreen ();
-}
+}}
 
 critcl::cproc linenoise::Prompt {
     Tcl_Interp* interp

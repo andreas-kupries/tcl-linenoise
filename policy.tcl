@@ -182,6 +182,7 @@ namespace eval linenoise::history {
     namespace ensemble create -map {
 	add     ::linenoise::history_add
 	clear   ::linenoise::history_clear
+	list    ::linenoise::history_list
 	load    ::linenoise::history::load
 	maxsize ::linenoise::history::maxsize
 	save    ::linenoise::history::save

@@ -1,5 +1,5 @@
 '\"
-'\" Generated from file '/home/aku/Projects/Linenoise/tcllinenoise/embedded/man/files/linenoise_sources.n' by tcllib/doctools with format 'nroff'
+'\" Generated from file '/net/nas/data/andreask/Dev/Linenoise/tcl-linenoise/embedded/man/files/linenoise_sources.n' by tcllib/doctools with format 'nroff'
 '\" Copyright (c) 2013 Andreas Kupries
 '\"
 '\" The definitions below are for supplemental macros used in Tcl/Tk
@@ -244,7 +244,8 @@ Database Class:	\\fB\\$3\\fR
 linenoise_sources \- Linenoise - How To Get The Sources
 .SH DESCRIPTION
 Welcome to Linenoise, a binding to Antirez's \fBlinenoise\fR
-minimal line editor library.
+minimal line editor library, as modified and extended by Steve
+Bennet of Workware.au
 .PP
 The audience of this document is anyone wishing to either have
 just a look at Linenoise's source code, or build the package, or to
@@ -266,12 +267,12 @@ The official repository for Linenoise itself can be found at
 The repository of the linenoise C library required by the
 binding can be found at
 \fIhttp://andreas-kupries.github.com/linenoise\fR.
-This is a fork of the official repository which can be found
-\fIhttp://github.com/antirez/linenoise\fR.
+This is a fork of the repository at
+\fIhttp://github.com/msteveb/linenoise\fR.
 .PP
 It is recommended to use my repository as it may contain
-features and changes required by the binding and not available in the
-original.
+features, changes and bugfixes required by the binding and not
+available in the original.
 .SH RETRIEVAL
 Assuming that you simply wish to look at the sources, or build a
 specific revision, the easiest way of retrieving either binding or C
@@ -305,7 +306,9 @@ retrieved via:
 .CE
 to get a checkout of the head of the trunks.
 .SH AUTHORS
-Andreas Kupries, Antirez (C level linenoise)
+Andreas Kupries (Tcl Binding),
+Steve Bennett (extended linenoise C library),
+Salvatore Sanfilippo (Antirez, original linenoise C library).
 .SH "BUGS, IDEAS, FEEDBACK"
 This document, and the package it describes, will undoubtedly contain
 bugs and other problems.

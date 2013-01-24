@@ -27,12 +27,12 @@ The official repository for Linenoise itself can be found at
 [para] The repository of the linenoise C library required by the
 binding can be found at
 [uri http://andreas-kupries.github.com/linenoise].
-This is a fork of the official repository which can be found
-[uri http://github.com/antirez/linenoise].
+This is a fork of the repository at
+[uri http://github.com/msteveb/linenoise].
 
 [para] It is recommended to use my repository as it may contain
-features and changes required by the binding and not available in the
-original.
+features, changes and bugfixes required by the binding and not
+available in the original.
 
 [section Retrieval]
 

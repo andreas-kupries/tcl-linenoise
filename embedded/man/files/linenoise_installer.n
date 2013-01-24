@@ -1,5 +1,5 @@
 '\"
-'\" Generated from file '/home/aku/Projects/Linenoise/tcllinenoise/embedded/man/files/linenoise_installer.n' by tcllib/doctools with format 'nroff'
+'\" Generated from file '/net/nas/data/andreask/Dev/Linenoise/tcl-linenoise/embedded/man/files/linenoise_installer.n' by tcllib/doctools with format 'nroff'
 '\" Copyright (c) 2013 Andreas Kupries
 '\"
 '\" The definitions below are for supplemental macros used in Tcl/Tk
@@ -244,7 +244,8 @@ Database Class:	\\fB\\$3\\fR
 linenoise_install_guide \- Linenoise - The Installer's Guide
 .SH DESCRIPTION
 Welcome to Linenoise, a binding to Antirez's \fBlinenoise\fR
-minimal line editor library.
+minimal line editor library, as modified and extended by Steve
+Bennet of Workware.au
 .PP
 The audience of this document is anyone wishing to build the
 package, for either themselves, or others.
@@ -394,7 +395,9 @@ syntax, invoke  "\fIbuild.tcl\fR" with argument \fBhelp\fR, i.e., like
 
 .CE
 .SH AUTHORS
-Andreas Kupries, Antirez (C level linenoise)
+Andreas Kupries (Tcl Binding),
+Steve Bennett (extended linenoise C library),
+Salvatore Sanfilippo (Antirez, original linenoise C library).
 .SH "BUGS, IDEAS, FEEDBACK"
 This document, and the package it describes, will undoubtedly contain
 bugs and other problems.
