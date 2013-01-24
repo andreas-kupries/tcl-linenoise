@@ -248,5 +248,8 @@ doc
 \fBlinenoise_license\fR
 \fIfiles/license.n\fR: Linenoise - License
 .TP
+\fBlinenoise_install_guide\fR
+\fIfiles/linenoise_installer.n\fR: Linenoise - The Installer's Guide
+.TP
 \fBlinenoise_changes\fR
 \fIfiles/changes.n\fR: Linenoise Changes

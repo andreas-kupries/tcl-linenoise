@@ -59,7 +59,10 @@ With that tool available the full history of all pieces can be
 retrieved via:
 
 [example {
+    # Get the C library sources
     git clone http://github.com/andreas-kupries/linenoise
+
+    # Get the sources of the tcl binding
     git clone http://github.com/andreas-kupries/tcl-linenoise
 }]
 

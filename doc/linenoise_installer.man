@@ -1,0 +1,90 @@
+[comment {-*- tcl -*- doctools manpage}]
+[manpage_begin linenoise_install_guide n 1]
+[include include/module.inc]
+[titledesc {Linenoise - The Installer's Guide}]
+[description]
+[include include/welcome.inc]
+
+[para] The audience of this document is anyone wishing to build the
+package, for either themselves, or others.
+
+[para] For a developer intending to extend or modify the package we
+additionally provide
+
+[list_begin enum]
+[enum] [term {Linenoise - License}].
+[enum] [term {Linenoise - The Developer's Guide}].
+[list_end]
+
+[para]
+
+Please read [term {Linenoise - How To Get The Sources}] first, if that was
+not done already. Here we assume that all the sources are already
+available in a directory of your choice.
+
+[para]
+
+[section Requisites]
+
+Before Linenoise can be build and used a number of requisites must be installed. These are:
+
+[list_begin enumerated]
+[enum] The scripting language Tcl.
+       For details see [sectref Tcl].
+
+[enum] The [package critcl] package (C embedding) for [syscmd Tcl].
+       For details see [sectref CriTcl].
+[list_end]
+
+This list assumes that the machine where Linenoise is to be installed is
+essentially clean. Of course, if parts of the dependencies listed
+below are already installed the associated steps can be skipped. It is
+still recommended to read their sections though, to validate that the
+dependencies they talk about are indeed installed.
+
+[include include/rq_tcl.inc]
+[include include/rq_critcl.inc]
+
+[section {Build & Installation}]
+
+To install linenoise simply run
+
+[example {
+    /path/to/tclsh /path/to/tcl-linenoise/build.tcl install
+}]
+
+where [file /path/to/tclsh] is the tclsh of your Tcl installation, and
+[file /path/to/tcl-linenoise] the location of the binding's sources on
+your system. The linenoise sources on the other hand are expected to
+be either a sibling directory to the binding's sources, or a
+sub-directory in it. Regardless of location, this directory has to be
+named [file linenoise].
+
+[para]
+
+This builds the package and then places it into a directory where the
+[cmd tclsh] will find them.
+
+[para]
+
+On Windows you can invoke the file [file build.tcl] with a
+double-click.  This will pop up a small graphical interface for
+entering the destination and performing the installation. This
+handling of a double-click is restricted to Windows only however.
+
+[para]
+
+On unix the same GUI is acessible by invoking [file build.tcl] with
+the argument [cmd gui].
+
+[para]
+
+To get help about the methods of [file build.tcl], and their complete
+syntax, invoke  [file build.tcl] with argument [method help], i.e., like
+
+[example {
+    /path/to/tclsh /path/to/tcl-linenoise/build.tcl help
+}]
+
+[include include/feedback.inc]
+[manpage_end]

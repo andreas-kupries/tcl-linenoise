@@ -1,5 +1,5 @@
 '\"
-'\" Generated from file '/home/aku/Projects/Linenoise/tcllinenoise/embedded/man/files/linenoise_sources.n' by tcllib/doctools with format 'nroff'
+'\" Generated from file '/home/aku/Projects/Linenoise/tcllinenoise/embedded/man/files/linenoise_installer.n' by tcllib/doctools with format 'nroff'
 '\" Copyright (c) 2013 Andreas Kupries
 '\"
 '\" The definitions below are for supplemental macros used in Tcl/Tk
@@ -238,72 +238,161 @@ Database Class:	\\fB\\$3\\fR
 .de UL
 \\$1\l'|0\(ul'\\$2
 ..
-.TH "linenoise_sources" n 1 doc "Tcl Line Editor"
+.TH "linenoise_install_guide" n 1 doc "Tcl Line Editor"
 .BS
 .SH NAME
-linenoise_sources \- Linenoise - How To Get The Sources
+linenoise_install_guide \- Linenoise - The Installer's Guide
 .SH DESCRIPTION
 Welcome to Linenoise, a binding to Antirez's \fBlinenoise\fR
 minimal line editor library.
 .PP
-The audience of this document is anyone wishing to either have
-just a look at Linenoise's source code, or build the package, or to
-extend and modify it.
+The audience of this document is anyone wishing to build the
+package, for either themselves, or others.
 .PP
-For builders and developers we additionally provide
+For a developer intending to extend or modify the package we
+additionally provide
 .IP [1]
 \fILinenoise - License\fR.
 .IP [2]
-\fILinenoise - The Installer's Guide\fR.
-.IP [3]
 \fILinenoise - The Developer's Guide\fR.
 .PP
-respectively.
-.SH "SOURCE LOCATION"
-The official repository for Linenoise itself can be found at
-\fIhttp://andreas-kupries.github.com/tcl-linenoise\fR.
 .PP
-The repository of the linenoise C library required by the
-binding can be found at
-\fIhttp://andreas-kupries.github.com/linenoise\fR.
-This is a fork of the official repository which can be found
-\fIhttp://github.com/antirez/linenoise\fR.
+Please read \fILinenoise - How To Get The Sources\fR first, if that was
+not done already. Here we assume that all the sources are already
+available in a directory of your choice.
 .PP
-It is recommended to use my repository as it may contain
-features and changes required by the binding and not available in the
-original.
-.SH RETRIEVAL
-Assuming that you simply wish to look at the sources, or build a
-specific revision, the easiest way of retrieving either binding or C
-library is to:
+.SH REQUISITES
+Before Linenoise can be build and used a number of requisites must be installed. These are:
 .IP [1]
-Go to the respective repository site.
+The scripting language Tcl.
+For details see \fBTcl\fR.
 .IP [2]
-Follow the 'Fork me on Github' link (top-right corner) to the project sources.
-.IP [3]
-Choose the revision under the Commits panel you wish to have and
-.IP [4]
-follow its 'Browse code' link to its detailed information page.
-.IP [5]
-On that page, choose either the "ZIP" link to get a copy of this revision as a Zip archive.
+The \fBcritcl\fR package (C embedding) for \fBTcl\fR.
+For details see \fBCriTcl\fR.
 .PP
-.SH "SOURCE CODE MANAGEMENT"
-For the curious (or a developer-to-be), the sources are managed by the
-\fIGit SCM\fR [http://git-scm.com].
+This list assumes that the machine where Linenoise is to be installed is
+essentially clean. Of course, if parts of the dependencies listed
+below are already installed the associated steps can be skipped. It is
+still recommended to read their sections though, to validate that the
+dependencies they talk about are indeed installed.
+.SS TCL
+As we are building a Tcl package that should be pretty much obvious
+that a working Tcl installation is needed, and I will not belabor the
+point.
 .PP
-With that tool available the full history of all pieces can be
-retrieved via:
+Out of the many use whatever you are comfortable with, as long
+as it provides Tcl 8.5, or higher.
+.PP
+This may a Tcl installation provided by your operating system
+distribution, from a distribution-independent vendor, or built by
+yurself.
+.PP
+Myself, I used \fIActiveState's\fR [http://www.activestate.com]
+ActiveTcl 8.5 distribution during development of the binding, as I am
+most familiar with it.
+.PP
+\fI(Disclosure: I, Andreas Kupries, work for ActiveState, maintaining ActiveTcl and TclDevKit for them).\fR
+.PP
+This distribution can be found at
+\fIhttp://www.activestate.com/activetcl\fR. Retrieve the archive of
+ActiveTcl 8.5 for your platform and install it as directed by
+ActiveState.
+.PP
+Assuming that ActiveTcl got installed I usually run the command
 .CS
 
 
-    # Get the C library sources
-    git clone http://github.com/andreas-kupries/linenoise
-
-    # Get the sources of the tcl binding
-    git clone http://github.com/andreas-kupries/tcl-linenoise
+    teacup update
 
 .CE
-to get a checkout of the head of the trunks.
+to install all packages ActiveState provides, and the kitchensink, as
+the distribution itself usually contains only the ost important set of
+packages. This ensures that the dependencies for Critcl are all
+present, and more.
+.PP
+If that is not to your liking you have to read the sections for
+Critcl to determine the exact set of packages required, and install
+only these using
+.CS
+
+
+    teacup install $packagename
+
+.CE
+.PP
+Both \fBteacup\fR commands above assume that ActiveState's
+TEApot repository at \fIhttp://teapot.activestate.com\fR is in the
+list of repositories accessible to \fBteacup\fR. This is automatically
+ensured for the ActiveTcl distribution. Others may have to run
+.CS
+
+
+    teacup archive add http://teapot.activestate.com
+
+.CE
+to make this happen.
+.PP
+For those wishing to build Tcl/Tk on their own, their sources
+can be found at
+.TP
+Tcl
+\fIhttp://core.tcl.tk/tcl/\fR
+.TP
+Tk
+\fIhttp://core.tcl.tk/tk/\fR
+.PP
+.SS CRITCL
+To build the linenoise binding the tool \fBcritcl\fR is required.
+.PP
+The build system accept it either as an application found in
+the PATH, or as a Tcl package available to the \fBtclsh\fR used to
+run their build & installation processes.
+.PP
+We \fImust\fR have version 3.1 or higher.
+.PP
+Its github repository can be found at
+\fIhttp://andreas-kupries.github.com/critcl\fR.
+.PP
+At the above url is also an explanation on how to build and
+install CriTcl, including a list of its dependencies.
+.PP
+Its instructions will not be repeated here. If there are
+problems with their directions please file a bug against the critcl
+project, and not tcl-linenoise.
+.SH "BUILD & INSTALLATION"
+To install linenoise simply run
+.CS
+
+
+    /path/to/tclsh /path/to/tcl-linenoise/build.tcl install
+
+.CE
+where "\fI/path/to/tclsh\fR" is the tclsh of your Tcl installation, and
+"\fI/path/to/tcl-linenoise\fR" the location of the binding's sources on
+your system. The linenoise sources on the other hand are expected to
+be either a sibling directory to the binding's sources, or a
+sub-directory in it. Regardless of location, this directory has to be
+named "\fIlinenoise\fR".
+.PP
+This builds the package and then places it into a directory where the
+\fBtclsh\fR will find them.
+.PP
+On Windows you can invoke the file "\fIbuild.tcl\fR" with a
+double-click.  This will pop up a small graphical interface for
+entering the destination and performing the installation. This
+handling of a double-click is restricted to Windows only however.
+.PP
+On unix the same GUI is acessible by invoking "\fIbuild.tcl\fR" with
+the argument \fBgui\fR.
+.PP
+To get help about the methods of "\fIbuild.tcl\fR", and their complete
+syntax, invoke  "\fIbuild.tcl\fR" with argument \fBhelp\fR, i.e., like
+.CS
+
+
+    /path/to/tclsh /path/to/tcl-linenoise/build.tcl help
+
+.CE
 .SH AUTHORS
 Andreas Kupries, Antirez (C level linenoise)
 .SH "BUGS, IDEAS, FEEDBACK"
