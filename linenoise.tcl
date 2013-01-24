@@ -30,7 +30,7 @@ critcl::license \
     {Under a BSD license.}
 
 critcl::summary \
-    {line-editor package build on top of antirez's linenoise C library}
+    {A line-editor package build on top of antirez's linenoise C library}
 
 critcl::description {
     This package provides access to antirez's linenoise library for
@@ -38,7 +38,13 @@ critcl::description {
     the minimal approach of linenoise.
 }
 
-critcl::subject {line editor} linenoise readline editline {edit line}
+critcl::subject \
+    {line editor} linenoise readline editline \
+    {edit line} tty console terminal {read line} \
+    {line reader}
+
+critcl::meta location \
+    http://andreas-kupries.github.com/critcl
 
 # # ## ### ##### ######## ############# #####################
 ## Implementation.
