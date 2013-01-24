@@ -1,1 +1,1 @@
-doc {doc/toc {{doc/files/license.html linenoise_license {Linenoise - License}}}}
+doc {doc/toc {{doc/files/license.html linenoise_license {Linenoise - License}} {doc/files/linenoise_sources.html linenoise_sources {Linenoise - How To Get The Sources}} {doc/files/changes.html linenoise_changes {Linenoise Changes}}}}

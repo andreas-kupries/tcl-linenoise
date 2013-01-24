@@ -1,6 +1,6 @@
 
 <html><head>
-<title>linenoise_license - Tcl Line Editor</title>
+<title>linenoise_sources - Tcl Line Editor</title>
 <style type="text/css"><!--
     HTML {
 	background: 	#FFFFFF;
@@ -92,11 +92,11 @@
     }
 --></style>
 </head>
-<! -- Generated from file '/home/aku/Projects/Linenoise/tcllinenoise/embedded/www/doc/files/license.html' by tcllib/doctools with format 'html'
+<! -- Generated from file '/home/aku/Projects/Linenoise/tcllinenoise/embedded/www/doc/files/linenoise_sources.html' by tcllib/doctools with format 'html'
    -->
 <! -- Copyright &copy; 2013 Andreas Kupries
    -->
-<! -- CVS: $Id$ linenoise_license.n
+<! -- CVS: $Id$ linenoise_sources.n
    -->
 <body><div class="doctools">
 <hr> [
@@ -104,17 +104,19 @@
 | <a href="../toc.html">Table Of Contents</a>
 | <a href="../../index.html">Keyword Index</a>
 ] <hr>
-<h1 class="title">linenoise_license(n) 1 doc &quot;Tcl Line Editor&quot;</h1>
+<h1 class="title">linenoise_sources(n) 1 doc &quot;Tcl Line Editor&quot;</h1>
 <div id="name" class="section"><h2><a name="name">Name</a></h2>
-<p>linenoise_license - Linenoise - License</p>
+<p>linenoise_sources - Linenoise - How To Get The Sources</p>
 </div>
 <div id="toc" class="section"><h2><a name="toc">Table Of Contents</a></h2>
 <ul class="toc">
 <li class="section"><a href="#toc">Table Of Contents</a></li>
 <li class="section"><a href="#section1">Description</a></li>
-<li class="section"><a href="#section2">License</a></li>
-<li class="section"><a href="#section3">Authors</a></li>
-<li class="section"><a href="#section4">Bugs, Ideas, Feedback</a></li>
+<li class="section"><a href="#section2">Source Location</a></li>
+<li class="section"><a href="#section3">Retrieval</a></li>
+<li class="section"><a href="#section4">Source Code Management</a></li>
+<li class="section"><a href="#section5">Authors</a></li>
+<li class="section"><a href="#section6">Bugs, Ideas, Feedback</a></li>
 <li class="section"><a href="#keywords">Keywords</a></li>
 <li class="section"><a href="#category">Category</a></li>
 <li class="section"><a href="#copyright">Copyright</a></li>
@@ -123,48 +125,56 @@
 <div id="section1" class="section"><h2><a name="section1">Description</a></h2>
 <p>Welcome to Linenoise, a binding to Antirez's <b class="package"><a href="../../index.html#key4">linenoise</a></b>
 minimal line editor library.</p>
-<p>The package is under the BSD license.</p>
+<p>The audience of this document is anyone wishing to either have
+just a look at Linenoise's source code, or build the package, or to
+extend and modify it.</p>
+<p>For builders and developers we additionally provide</p>
+<ol class="enumerated">
+<li><p><i class="term"><a href="license.html">Linenoise - License</a></i>.</p></li>
+<li><p><i class="term">Linenoise - The Installer's Guide</i>.</p></li>
+<li><p><i class="term">Linenoise - The Developer's Guide</i>.</p></li>
+</ol>
+<p>respectively.</p>
 </div>
-<div id="section2" class="section"><h2><a name="section2">License</a></h2>
-<p>This software is copyrighted by Andreas Kupries and other
-parties.  The following terms apply to all files associated with the
-software unless explicitly disclaimed in individual files.</p>
-<p>The authors hereby grant permission to use, copy, modify,
-distribute, and license this software and its documentation for any
-purpose, provided that existing copyright notices are retained in all
-copies and that this notice is included verbatim in any
-distributions. No written agreement, license, or royalty fee is
-required for any of the authorized uses.  Modifications to this
-software may be copyrighted by their authors and need not follow the
-licensing terms described here, provided that the new terms are
-clearly indicated on the first page of each file where they apply.</p>
-<p>IN NO EVENT SHALL THE AUTHORS OR DISTRIBUTORS BE LIABLE TO ANY
-PARTY FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL
-DAMAGES ARISING OUT OF THE USE OF THIS SOFTWARE, ITS DOCUMENTATION, OR
-ANY DERIVATIVES THEREOF, EVEN IF THE AUTHORS HAVE BEEN ADVISED OF THE
-POSSIBILITY OF SUCH DAMAGE.</p>
-<p>THE AUTHORS AND DISTRIBUTORS SPECIFICALLY DISCLAIM ANY
-WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
-NON-INFRINGEMENT.  THIS SOFTWARE IS PROVIDED ON AN &quot;AS IS&quot; BASIS, AND
-THE AUTHORS AND DISTRIBUTORS HAVE NO OBLIGATION TO PROVIDE
-MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.</p>
-<p>GOVERNMENT USE: If you are acquiring this software on behalf of
-the U.S. government, the Government shall have only &quot;Restricted
-Rights&quot; in the software and related documentation as defined in the
-Federal Acquisition Regulations (FARs) in Clause 52.227.19 (c) (2).
-If you are acquiring the software on behalf of the Department of
-Defense, the software shall be classified as &quot;Commercial Computer
-Software&quot; and the Government shall have only &quot;Restricted Rights&quot; as
-defined in Clause 252.227-7014 (b) (3) of DFARs.  Notwithstanding the
-foregoing, the authors grant the U.S. Government and others acting in
-its behalf permission to use and distribute the software in accordance
-with the terms specified in this license.</p>
+<div id="section2" class="section"><h2><a name="section2">Source Location</a></h2>
+<p>The official repository for Linenoise itself can be found at
+<a href="http://andreas-kupries.github.com/tcl-linenoise">http://andreas-kupries.github.com/tcl-linenoise</a>.</p>
+<p>The repository of the linenoise C library required by the
+binding can be found at
+<a href="http://andreas-kupries.github.com/linenoise">http://andreas-kupries.github.com/linenoise</a>.
+This is a fork of the official repository which can be found
+<a href="http://github.com/antirez/linenoise">http://github.com/antirez/linenoise</a>.</p>
+<p>It is recommended to use my repository as it may contain
+features and changes required by the binding and not available in the
+original.</p>
 </div>
-<div id="section3" class="section"><h2><a name="section3">Authors</a></h2>
+<div id="section3" class="section"><h2><a name="section3">Retrieval</a></h2>
+<p>Assuming that you simply wish to look at the sources, or build a
+specific revision, the easiest way of retrieving either binding or C
+library is to:</p>
+<ol class="enumerated">
+<li><p>Go to the respective repository site.</p></li>
+<li><p>Follow the 'Fork me on Github' link (top-right corner) to the project sources.</p></li>
+<li><p>Choose the revision under the Commits panel you wish to have and</p></li>
+<li><p>follow its 'Browse code' link to its detailed information page.</p></li>
+<li><p>On that page, choose either the &quot;ZIP&quot; link to get a copy of this revision as a Zip archive.</p></li>
+</ol>
+</div>
+<div id="section4" class="section"><h2><a name="section4">Source Code Management</a></h2>
+<p>For the curious (or a developer-to-be), the sources are managed by the
+<a href="http://git-scm.com">Git SCM</a>.</p>
+<p>With that tool available the full history of all pieces can be
+retrieved via:</p>
+<pre class="example">
+    git clone http://github.com/andreas-kupries/linenoise
+    git clone http://github.com/andreas-kupries/tcl-linenoise
+</pre>
+<p>to get a checkout of the head of the trunks.</p>
+</div>
+<div id="section5" class="section"><h2><a name="section5">Authors</a></h2>
 <p>Andreas Kupries, Antirez (C level linenoise)</p>
 </div>
-<div id="section4" class="section"><h2><a name="section4">Bugs, Ideas, Feedback</a></h2>
+<div id="section6" class="section"><h2><a name="section6">Bugs, Ideas, Feedback</a></h2>
 <p>This document, and the package it describes, will undoubtedly contain
 bugs and other problems.
 Please report them at <a href="https://github.com/andreas-kupries/tcl-linenoise/issues">https://github.com/andreas-kupries/tcl-linenoise/issues</a>.

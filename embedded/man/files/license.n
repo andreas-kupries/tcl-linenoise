@@ -1,5 +1,5 @@
 '\"
-'\" Generated from file '/net/nas/data/andreask/Dev/Linenoise/tcl-linenoise/embedded/man/files/license.n' by tcllib/doctools with format 'nroff'
+'\" Generated from file '/home/aku/Projects/Linenoise/tcllinenoise/embedded/man/files/license.n' by tcllib/doctools with format 'nroff'
 '\" Copyright (c) 2013 Andreas Kupries
 '\"
 '\" The definitions below are for supplemental macros used in Tcl/Tk
