@@ -252,12 +252,31 @@ proc ::linenoise::hidden {{new {}}} {
 
 proc ::linenoise::cmdloop {args} {
     array set config {
-	-prompt1   {apply {{} { return "% " }}}
-	-prompt2   {apply {{} { return "> " }}}
-	-dispatch  {uplevel 1}
-	-continued {apply {{line} {expr {![info complete $line]}}}
-	-complete  {}
 	-history   0
+	-prompt1 {apply {{} {
+	    return "% "
+	}}}
+	-prompt2 {apply {{} {
+	    return "> "
+	}}}
+	-complete  {}
+	-continued {apply {{line} {
+	    expr {![info complete $line]}
+	}}}
+	-dispatch {uplevel 1}
+	-report {apply {{what data} {
+	    switch -exact -- $what {
+		ok {
+		    if {$data eq {}} return
+		    puts stdout $data
+		}
+		fail { puts stderr $data }
+		default {
+		    return -code error \
+			"Internal error, bad result type \"$what\", expected ok, or fail"
+		}
+	    }
+	}}}
     }
 
     foreach {o v} $args {
@@ -311,15 +330,21 @@ proc ::linenoise::cmdloop {args} {
 	    # Stop collection loop.
 	    break
 	}
+
+	# Save command.
 	if {$config(-history)} {
 	    history add $buffer
 	}
+
+	# Dispatch for execution.
+	set type fail
 	set fail [catch {
 	    {*}$config(-dispatch) $buffer
-	} res]
-	if {$fail || ($res ne {})} {
-	    puts [expr {$fail ? "stderr" : "stdout"}] $res
-	}
+	    set type ok
+	} result]
+
+	# Report results.
+	{*}$config(-report) $type $result
     }
 
     # Restore outer status of hidden
