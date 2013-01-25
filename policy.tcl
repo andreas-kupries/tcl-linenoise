@@ -214,7 +214,8 @@ proc ::linenoise::cmdloop {args} {
 	-prompt1   {apply {{} { return "% " }}}
 	-prompt2   {apply {{} { return "> " }}}
 	-dispatch  {uplevel 1}
-	-complete  {info complete}
+	-continued {apply {{line} {expr {![info complete $line]}}}
+	-complete  {}
 	-history   0
     }
 
@@ -235,7 +236,7 @@ proc ::linenoise::cmdloop {args} {
 	    }
 	    default {
 		return -code error \
-		    "Unknown option \"$o\", expected one of -prompt1, -prompt2, -history, and -dispatch"
+		    "Unknown option \"$o\", expected one of -prompt1, -prompt2, -history, -dispatch, -continued, or -complete"
 	    }
 	}
     }
@@ -245,7 +246,6 @@ proc ::linenoise::cmdloop {args} {
     # nested.
     set savedhidden [hidden]
 
-    set chan stdout
     set run 1
     while {$run} {
 	set prompt [{*}$config(-prompt1)]
@@ -253,8 +253,8 @@ proc ::linenoise::cmdloop {args} {
 	while 1 {
 	    hidden 0
 	    if {[catch {
-		# Inlined low-level command. No completion, for now.
-		Prompt $prompt {}
+		# Inlined low-level command.
+		Prompt $prompt $config(-complete)
 	    } line]} {
 		# Stop not only the collection loop, but the outer
 		# prompt loop as well. Nothing is dispatched.
@@ -262,12 +262,13 @@ proc ::linenoise::cmdloop {args} {
 		break
 	    }
 	    append buffer $line
-	    if {[{*}$config(-complete) $buffer\n]} {
-		# Stop collection loop.
-		break
+	    if {[{*}$config(-continued) $buffer\n]} {
+		append buffer \n
+		set prompt [{*}$config(-prompt2)]
+		continue
 	    }
-	    append buffer \n
-	    set prompt [{*}$config(-prompt2)]
+	    # Stop collection loop.
+	    break
 	}
 	if {$config(-history)} {
 	    history add $buffer
@@ -275,11 +276,9 @@ proc ::linenoise::cmdloop {args} {
 	set fail [catch {
 	    {*}$config(-dispatch) $buffer
 	} res]
-	if {$fail} { set chan stderr }
 	if {$fail || ($res ne {})} {
-	    puts $chan $res
+	    puts [expr {$fail ? "stderr" : "stdout"}] $res
 	}
-	set chan stdout
     }
 
     # Restore outer status of hidden
