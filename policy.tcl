@@ -194,9 +194,50 @@ namespace eval linenoise::history {
 ## Main interface, ensemble of the main primitives, plus the history
 ## sub-ensemble.
 
-proc ::linenoise::prompt {prompt {cmdprefix {}}} {
-    # Wrapped to make the callback optional.
-    Prompt $prompt $cmdprefix
+proc ::linenoise::prompt {args} {
+    array set config {
+	-prompt    {% }
+	-history   0
+	-hidden    0
+	-complete  {}
+    }
+
+    foreach {o v} $args {
+	switch -exact -- $o {
+	    -complete -
+	    -prompt   {
+		set config($o) $v
+	    }
+	    -hidden -
+	    -history {
+		if {![string is boolean -strict $v]} {
+		    return -code error \
+			"Expected boolean, got \"$v\""
+		}
+		set config($o) $v
+	    }
+	    default {
+		return -code error \
+		    "Unknown option \"$o\", expected one of -prompt, -hidden, -history, or -complete"
+	    }
+	}
+    }
+
+    set savedhidden [hidden]
+    hidden $config(-hidden)
+
+    set code [catch {
+	set result [Prompt $prompt $config(-complete)]
+    } result options]
+
+    if {!$code && $config(-history)} {
+	history add $buffer
+    }
+
+    # Restore outer status of hidden
+    hidden $savedhidden
+
+    return -options $options $result
 }
 
 proc ::linenoise::hidden {{new {}}} {
