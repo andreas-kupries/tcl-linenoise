@@ -29,3 +29,8 @@ puts \t[join [linenoise history list] \n\t]
 puts "echo: [linenoise prompt "world> "]"
 
 linenoise history save history_saved.txt
+
+
+linenoise hidden 1
+puts "echo: [linenoise prompt "password> "]"
+linenoise hidden 0

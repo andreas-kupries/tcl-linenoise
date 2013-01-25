@@ -199,6 +199,16 @@ proc ::linenoise::prompt {prompt {cmdprefix {}}} {
     Prompt $prompt $cmdprefix
 }
 
+proc ::linenoise::hidden {{new {}}} {
+    if {[llength [info level 0]] == 2} {
+	if {![string is boolean -strict $new]} {
+	    return -code error "Expected a boolean, got \"$new\""
+	}
+	::linenoise::hidden_set $new
+    }
+    return [::linenoise::hidden_get]
+}
+
 proc ::linenoise::cmdloop {args} {
     array set config {
 	-prompt1  {apply {{} { return "% " }}}
@@ -228,14 +238,26 @@ proc ::linenoise::cmdloop {args} {
 	}
     }
 
+    # Hidden input does not make sense for a command loop. But save
+    # the current state (and restore it at the end), in case this is
+    # nested.
+    set savedhidden [hidden]
+    hidden 0
+
     set chan stdout
-    while 1 {
+    set run 1
+    while {$run} {
 	set prompt [{*}$config(-prompt1)]
 	set buffer {}
 	while 1 {
 	    if {[catch {
 		prompt $prompt
-	    } line]} return
+	    } line]} {
+		# Stop not only the collection loop, but the outer
+		# prompt loop as well. Nothing is dispatched.
+		set run 0
+		break
+	    }
 	    append buffer $line
 	    if {[info complete $buffer\n]} break
 	    append buffer \n
@@ -253,6 +275,10 @@ proc ::linenoise::cmdloop {args} {
 	}
 	set chan stdout
     }
+
+    # Restore outer status of hidden
+    hidden $savedhidden
+    return
 }
 
 # # ## ### ##### ######## ############# #####################
@@ -267,10 +293,12 @@ namespace eval linenoise {
     # - history_save             | ditto
     # - history_size             |
     # - history_getmax           | wrapped into combination
-    # - history_setmax           | accessor command
+    # - history_setmax           | accessor command => history::max
+    # - hidden_set               | wrapped into combination
+    # - hidden_get               | accessor command => hidden
     # porcelain
     # - cmdloop
 
-    namespace export clear history prompt cmdloop
+    namespace export clear history hidden prompt cmdloop
     namespace ensemble create
 }

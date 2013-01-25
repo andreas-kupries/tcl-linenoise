@@ -239,6 +239,13 @@ critcl::cproc linenoise::history_list {} Tcl_Obj* {
 ## - clear screen
 ## - prompt for input, possibly with completion
 
+critcl::cproc linenoise::hidden_set {boolean enable} void {
+    linenoiseSetHidden (enable);
+}
+critcl::cproc linenoise::hidden_get {} boolean {
+    return linenoiseGetHidden ();
+}
+
 if 0 {# may we have this ?
 critcl::cproc linenoise::clear {} void {
     linenoiseClearScreen ();
