@@ -204,6 +204,7 @@ proc ::linenoise::cmdloop {args} {
 	-prompt1  {apply {{} { return "% " }}}
 	-prompt2  {apply {{} { return "> " }}}
 	-dispatch {uplevel 1}
+	-history  0
     }
 
     foreach {o v} $args {
@@ -213,9 +214,16 @@ proc ::linenoise::cmdloop {args} {
 	    -dispatch {
 		set config($o) $v
 	    }
+	    -history {
+		if {![string is boolean -strict $v]} {
+		    return -code error \
+			"Expected boolean, got \"$v\""
+		}
+		set config($o) $v
+	    }
 	    default {
 		return -code error \
-		    "Unknown option \"$o\", expected one of -prompt1, -prompt2, and -dispatch"
+		    "Unknown option \"$o\", expected one of -prompt1, -prompt2, -history, and -dispatch"
 	    }
 	}
     }
@@ -228,9 +236,13 @@ proc ::linenoise::cmdloop {args} {
 	    if {[catch {
 		prompt $prompt
 	    } line]} return
-	    append buffer $line\n
-	    if {[info complete $buffer]} break
+	    append buffer $line
+	    if {[info complete $buffer\n]} break
+	    append buffer \n
 	    set prompt [{*}$config(-prompt2)]
+	}
+	if {$config(-history)} {
+	    history add $buffer
 	}
 	set fail [catch {
 	    {*}$config(-dispatch) $buffer

@@ -11,5 +11,5 @@ linenoise cmdloop \
     }}} -prompt2 {apply {{} {
 	global counter
 	return "[file tail [pwd]] ($counter)> "
-    }}}
+    }}} -history on
 puts done
