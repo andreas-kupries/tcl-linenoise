@@ -211,16 +211,18 @@ proc ::linenoise::hidden {{new {}}} {
 
 proc ::linenoise::cmdloop {args} {
     array set config {
-	-prompt1  {apply {{} { return "% " }}}
-	-prompt2  {apply {{} { return "> " }}}
-	-dispatch {uplevel 1}
-	-history  0
+	-prompt1   {apply {{} { return "% " }}}
+	-prompt2   {apply {{} { return "> " }}}
+	-dispatch  {uplevel 1}
+	-complete  {info complete}
+	-history   0
     }
 
     foreach {o v} $args {
 	switch -exact -- $o {
-	    -prompt1 -
-	    -prompt2 -
+	    -complete -
+	    -prompt1  -
+	    -prompt2  -
 	    -dispatch {
 		set config($o) $v
 	    }
@@ -242,7 +244,6 @@ proc ::linenoise::cmdloop {args} {
     # the current state (and restore it at the end), in case this is
     # nested.
     set savedhidden [hidden]
-    hidden 0
 
     set chan stdout
     set run 1
@@ -250,8 +251,10 @@ proc ::linenoise::cmdloop {args} {
 	set prompt [{*}$config(-prompt1)]
 	set buffer {}
 	while 1 {
+	    hidden 0
 	    if {[catch {
-		prompt $prompt
+		# Inlined low-level command. No completion, for now.
+		Prompt $prompt {}
 	    } line]} {
 		# Stop not only the collection loop, but the outer
 		# prompt loop as well. Nothing is dispatched.
@@ -259,7 +262,10 @@ proc ::linenoise::cmdloop {args} {
 		break
 	    }
 	    append buffer $line
-	    if {[info complete $buffer\n]} break
+	    if {[{*}$config(-complete) $buffer\n]} {
+		# Stop collection loop.
+		break
+	    }
 	    append buffer \n
 	    set prompt [{*}$config(-prompt2)]
 	}
