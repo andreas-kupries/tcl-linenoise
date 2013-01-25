@@ -279,6 +279,11 @@ critcl::cproc linenoise::Prompt {
 
     Tcl_MutexUnlock (&edit);
 
+    if (line == NULL) {
+	Tcl_SetResult (interp, "aborted", TCL_STATIC);
+	return TCL_ERROR;
+    }
+
     Tcl_SetResult (interp, line, TCL_VOLATILE);
     return TCL_OK;
 }
