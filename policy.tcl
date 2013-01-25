@@ -199,6 +199,52 @@ proc ::linenoise::prompt {prompt {cmdprefix {}}} {
     Prompt $prompt $cmdprefix
 }
 
+proc ::linenoise::cmdloop {args} {
+    array set config {
+	-prompt1  {apply {{} { return "% " }}}
+	-prompt2  {apply {{} { return "> " }}}
+	-dispatch {uplevel 1}
+    }
+
+    foreach {o v} $args {
+	switch -exact -- $o {
+	    -prompt1 -
+	    -prompt2 -
+	    -dispatch {
+		set config($o) $v
+	    }
+	    default {
+		return -code error \
+		    "Unknown option \"$o\", expected one of -prompt1, -prompt2, and -dispatch"
+	    }
+	}
+    }
+
+    set chan stdout
+    while 1 {
+	set prompt [{*}$config(-prompt1)]
+	set buffer {}
+	while 1 {
+	    if {[catch {
+		prompt $prompt
+	    } line]} return
+	    append buffer $line\n
+	    if {[info complete $buffer]} break
+	    set prompt [{*}$config(-prompt2)]
+	}
+	set fail [catch {
+	    {*}$config(-dispatch) $buffer
+	} res]
+	if {$fail} { set chan stderr }
+	if {$fail || ($res ne {})} {
+	    puts $chan $res
+	}
+	set chan stdout
+    }
+}
+
+# # ## ### ##### ######## ############# #####################
+
 namespace eval linenoise {
     # primitive commands:
     # - clear
@@ -210,7 +256,9 @@ namespace eval linenoise {
     # - history_size             |
     # - history_getmax           | wrapped into combination
     # - history_setmax           | accessor command
+    # porcelain
+    # - cmdloop
 
-    namespace export clear history prompt
+    namespace export clear history prompt cmdloop
     namespace ensemble create
 }
