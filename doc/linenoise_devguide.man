@@ -1,0 +1,120 @@
+[comment {-*- tcl -*- doctools manpage}]
+[manpage_begin linenoise_devguide n 1]
+[include include/module.inc]
+[titledesc {Linenoise - The Developer's Guide}]
+[description]
+[include include/welcome.inc]
+
+[para] This document is a guide for developers working on Linenoise,
+i.e. maintainers fixing bugs, extending the package's functionality,
+etc.
+
+[para]
+
+Please read
+
+[list_begin enum]
+[enum] [term {Linenoise - License}],
+[enum] [term {Linenoise - How To Get The Sources}], and
+[enum] [term {Linenoise - The Installer's Guide}]
+[list_end]
+
+first, if that was not done already.
+
+[para] Here we assume that the sources are already available in a directory
+of your choice, and that you not only know how to build and install
+them, but also have all the necessary requisites to actually do
+so. The guide to the sources in particular also explains which source
+code management system is used, where to find it, how to set it up,
+etc.
+
+[section {Developing for Linenoise}]
+
+[comment @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@]
+[subsection {Architecture & Concepts}]
+[include include/architecture.inc]
+
+[comment @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@]
+[subsection Requirements]
+
+To develop for linenoise the following packages and applications must be
+available in the environment. These are all used by the [cmd build.tcl]
+helper application.
+
+[list_begin definitions]
+[def [syscmd dtplite]]
+
+A Tcl application provided by Tcllib, for the validation and
+conversion of [term doctools]-formatted text.
+
+[def [syscmd kettle]]
+
+A Tcl package and application supporting an simplifying the build scripts.
+The installation guide provides the information on where to find it.
+
+[list_end]
+
+[comment @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@]
+[subsection {Directory structure}]
+
+[list_begin definitions][comment {___1___}]
+
+[comment =====================================================================]
+[def Helpers]
+[list_begin definitions]
+[def [file build.tcl]]
+
+This helper application provides various operations needed by a
+developer for linenoise, like regenerating the documentation,
+building and installing linenoise, etc.
+
+[para] Running the command like
+
+[example {
+	./build.tcl help
+}]
+
+will provide more details about the available operations and their
+arguments.
+[list_end]
+
+[comment =====================================================================]
+[def Documentation]
+[list_begin definitions]
+[def [file doc/]]
+
+This directory contains the documentation sources.
+They are written in [term doctools] format.
+
+[def [file embedded/]]
+
+This directory contains the documentation converted to regular manpages
+(nroff) and HTML.
+
+It is called embedded because these files, while derived, are part of the
+git repository, i.e. embedded into it. This enables us to place these files
+where they are visible when serving the project's web interface.
+
+[list_end]
+
+[comment =====================================================================]
+[def {Package Code}]
+
+[list_begin definitions]
+
+[def [file linenoise.tcl]]
+The Tcl code with embbeded C implementing the basic binding.
+
+[def [file policy.tcl]]
+The Tcl code aggregating the basics into the final API as seen by the user.
+
+[list_end]
+
+[list_end][comment {___1___}]
+
+[comment {TODO **** Package dependency diagram ****}]
+[comment {TODO **** Diagram of the internal call graph ? ****}]
+[comment {TODO **** Add test/ ****}]
+
+[include include/feedback.inc]
+[manpage_end]

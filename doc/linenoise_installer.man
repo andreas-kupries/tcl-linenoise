@@ -34,6 +34,9 @@ Before Linenoise can be build and used a number of requisites must be installed.
 
 [enum] The [package critcl] package (C embedding) for [syscmd Tcl].
        For details see [sectref CriTcl].
+
+[enum] The [package kettle] package and application for [syscmd Tcl].
+       For details see [sectref Kettle].
 [list_end]
 
 This list assumes that the machine where Linenoise is to be installed is
@@ -44,6 +47,7 @@ dependencies they talk about are indeed installed.
 
 [include include/rq_tcl.inc]
 [include include/rq_critcl.inc]
+[include include/rq_kettle.inc]
 
 [section {Build & Installation}]
 

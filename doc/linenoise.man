@@ -1,0 +1,26 @@
+[comment {-*- tcl -*- doctools manpage}]
+[manpage_begin linenoise n 0]
+[include include/module.inc]
+[titledesc {Linenoise Package Reference}]
+[require Tcl 8.4]
+[require linenoise [opt 0]]
+[description]
+[para]
+[include include/welcome.inc]
+[para]
+
+This document is the reference manpage for the [package linenoise]
+package, a binding to Antirez's minimal line editor library
+(of the same name) and as extended by Steve Bennet.
+
+Its intended audience are developers wishing to write Tcl
+applications and packages using linenoise.
+
+[comment {===================================================================}]
+[section API]
+[include include/api.inc]
+
+[comment {===================================================================}]
+[include include/changes.inc]
+[include include/feedback.inc]
+[manpage_end]

@@ -1,0 +1,298 @@
+
+<html><head>
+<title>linenoise - Tcl Line Editor</title>
+<style type="text/css"><!--
+    HTML {
+	background: 	#FFFFFF;
+	color: 		black;
+    }
+    BODY {
+	background: 	#FFFFFF;
+	color:	 	black;
+    }
+    DIV.doctools {
+	margin-left:	10%;
+	margin-right:	10%;
+    }
+    DIV.doctools H1,DIV.doctools H2 {
+	margin-left:	-5%;
+    }
+    H1, H2, H3, H4 {
+	margin-top: 	1em;
+	font-family:	sans-serif;
+	font-size:	large;
+	color:		#005A9C;
+	background: 	transparent;
+	text-align:		left;
+    }
+    H1.title {
+	text-align: center;
+    }
+    UL,OL {
+	margin-right: 0em;
+	margin-top: 3pt;
+	margin-bottom: 3pt;
+    }
+    UL LI {
+	list-style: disc;
+    }
+    OL LI {
+	list-style: decimal;
+    }
+    DT {
+	padding-top: 	1ex;
+    }
+    UL.toc,UL.toc UL, UL.toc UL UL {
+	font:		normal 12pt/14pt sans-serif;
+	list-style:	none;
+    }
+    LI.section, LI.subsection {
+	list-style: 	none;
+	margin-left: 	0em;
+	text-indent:	0em;
+	padding: 	0em;
+    }
+    PRE {
+	display: 	block;
+	font-family:	monospace;
+	white-space:	pre;
+	margin:		0%;
+	padding-top:	0.5ex;
+	padding-bottom:	0.5ex;
+	padding-left:	1ex;
+	padding-right:	1ex;
+	width:		100%;
+    }
+    PRE.example {
+	color: 		black;
+	background: 	#f5dcb3;
+	border:		1px solid black;
+    }
+    UL.requirements LI, UL.syntax LI {
+	list-style: 	none;
+	margin-left: 	0em;
+	text-indent:	0em;
+	padding:	0em;
+    }
+    DIV.synopsis {
+	color: 		black;
+	background: 	#80ffff;
+	border:		1px solid black;
+	font-family:	serif;
+	margin-top: 	1em;
+	margin-bottom: 	1em;
+    }
+    UL.syntax {
+	margin-top: 	1em;
+	border-top:	1px solid black;
+    }
+    UL.requirements {
+	margin-bottom: 	1em;
+	border-bottom:	1px solid black;
+    }
+--></style>
+</head>
+<! -- Generated from file '/net/nas/data/andreask/Dev/Linenoise/tcl-linenoise/embedded/www/doc/files/linenoise.html' by tcllib/doctools with format 'html'
+   -->
+<! -- Copyright &copy; 2013 Andreas Kupries
+   -->
+<! -- CVS: $Id$ linenoise.n
+   -->
+<body><div class="doctools">
+<hr> [
+  <a href="../../toc.html">Main Table Of Contents</a>
+| <a href="../toc.html">Table Of Contents</a>
+| <a href="../../index.html">Keyword Index</a>
+] <hr>
+<h1 class="title">linenoise(n) 0 doc &quot;Tcl Line Editor&quot;</h1>
+<div id="name" class="section"><h2><a name="name">Name</a></h2>
+<p>linenoise - Linenoise Package Reference</p>
+</div>
+<div id="toc" class="section"><h2><a name="toc">Table Of Contents</a></h2>
+<ul class="toc">
+<li class="section"><a href="#toc">Table Of Contents</a></li>
+<li class="section"><a href="#synopsis">Synopsis</a></li>
+<li class="section"><a href="#section1">Description</a></li>
+<li class="section"><a href="#section2">API</a></li>
+<li class="section"><a href="#section3">Authors</a></li>
+<li class="section"><a href="#section4">Bugs, Ideas, Feedback</a></li>
+<li class="section"><a href="#keywords">Keywords</a></li>
+<li class="section"><a href="#category">Category</a></li>
+<li class="section"><a href="#copyright">Copyright</a></li>
+</ul>
+</div>
+<div id="synopsis" class="section"><h2><a name="synopsis">Synopsis</a></h2>
+<div class="synopsis">
+<ul class="requirements">
+<li>package require <b class="pkgname">Tcl 8.4</b></li>
+<li>package require <b class="pkgname">linenoise <span class="opt">?0?</span></b></li>
+</ul>
+<ul class="syntax">
+<li><a href="#1"><b class="cmd">linenoise cmdloop</b> <span class="opt">?options...?</span></a></li>
+<li><a href="#2"><b class="cmd">linenoise hidden</b> <span class="opt">?<i class="arg">enable</i>?</span></a></li>
+<li><a href="#3"><b class="cmd">linenoise history add</b> <i class="arg">string</i></a></li>
+<li><a href="#4"><b class="cmd">linenoise history clear</b></a></li>
+<li><a href="#5"><b class="cmd">linenoise history list</b></a></li>
+<li><a href="#6"><b class="cmd">linenoise history load</b> <i class="arg">path</i></a></li>
+<li><a href="#7"><b class="cmd">linenoise history maxsize</b> <span class="opt">?<i class="arg">n</i>?</span></a></li>
+<li><a href="#8"><b class="cmd">linenoise history save</b> <i class="arg">path</i></a></li>
+<li><a href="#9"><b class="cmd">linenoise history size</b></a></li>
+<li><a href="#10"><b class="cmd">linenoise prompt</b> <span class="opt">?options...?</span></a></li>
+</ul>
+</div>
+</div>
+<div id="section1" class="section"><h2><a name="section1">Description</a></h2>
+<p>Welcome to Linenoise, a binding to Antirez's <b class="package">linenoise</b>
+minimal line editor library, as modified and extended by Steve
+Bennet of Workware.au</p>
+<p>This document is the reference manpage for the <b class="package">linenoise</b>
+package, a binding to Antirez's minimal line editor library
+(of the same name) and as extended by Steve Bennet.
+Its intended audience are developers wishing to write Tcl
+applications and packages using linenoise.</p>
+</div>
+<div id="section2" class="section"><h2><a name="section2">API</a></h2>
+<p>This section describe the available commands.</p>
+<p>All of them are found under the <b class="cmd">linenoise</b> ensemble
+command.</p>
+<dl class="definitions">
+<dt><a name="1"><b class="cmd">linenoise cmdloop</b> <span class="opt">?options...?</span></a></dt>
+<dd><p>This command implements the core of a REPL (read-eval-print
+loop). While the defaults of the various options are geared towards
+the REPL of a Tcl shell, other types of REPL can implemented just fine
+by overriding them with the proper callbacks.</p>
+<p>The recognized options are</p>
+<dl class="options">
+<dt><b class="option">-complete</b> cmdprefix</dt>
+<dd><p>The value of this option is a command prefix taking the current
+contents of the line buffer as its single argument and returning a
+list of possible completions. The default is the empty command,
+disabling command completion.</p></dd>
+<dt><b class="option">-continued</b> cmdprefix</dt>
+<dd><p>The value of this option is a command prefix taking the user-entered
+line as its single argument and returning a boolean value telling the
+REPL if the line is incomplete and needs more input, i.e. a
+&quot;continuation line&quot;.
+The default value recognizes incomplete Tcl command lines.</p></dd>
+<dt><b class="option">-dispatch</b> cmdprefix</dt>
+<dd><p>The value of this option is a command prefix taking the user-entered
+line(s), i.e. command as its single argument and executing it. The
+result of the command is the result of the command prefix, and
+delivered to option <b class="option">-report</b> for printing. Errors thrown by
+the execution are caught and printed through <b class="option">-report</b> as well.
+The default value simply runs the command in the context calling the
+REPL.</p></dd>
+<dt><b class="option">-history</b> boolean</dt>
+<dd><p>The value of this option specifies if the command should put the
+entered strings into the history (<b class="const">true</b>), or not. The default
+value is <b class="const">false</b>, leaving the history untouched.</p></dd>
+<dt><b class="option">-prompt1</b> cmdprefix</dt>
+<dd><p>The value of this option is a command prefix without arguments.  Its
+result is treated as the main (primary) prompt used by the REPL. This
+callback is run for each iteration of the main loop, allowing for
+changes to the prompt in response to a changing system state.
+The default value returns &quot;<b class="const">% </b>&quot;.</p></dd>
+<dt><b class="option">-prompt2</b> cmdprefix</dt>
+<dd><p>The value of this option is a command prefix without arguments.  Its
+result is treated as the secondary prompt used by the REPL, when
+entering continuation lines. This callback is run for each iteration
+of the secondary loop, allowing for changes to the prompt in response
+to a changing system state.
+The default value returns &quot;<b class="const">&gt; </b>&quot;.</p></dd>
+<dt><b class="option">-report</b> cmdprefix</dt>
+<dd><p>The value of this option is a command prefix taking two arguments, the
+type of a command result (<b class="const">ok</b>, or <b class="const">fail</b>), and the result
+itself, and &quot;printing&quot; this data in some way.
+The default value prints ok result to stdout and fail results to
+stderr.</p></dd>
+</dl></dd>
+<dt><a name="2"><b class="cmd">linenoise hidden</b> <span class="opt">?<i class="arg">enable</i>?</span></a></dt>
+<dd><p>This command returns the current state of the system's hidden flag,
+which is <b class="const">true</b> if hidden input is activated, and <b class="const">false</b>
+otherwise. If the argument is specified it has to be a boolean value
+which becomes the new value of the flag. This new value is then returned.</p></dd>
+<dt><a name="3"><b class="cmd">linenoise history add</b> <i class="arg">string</i></a></dt>
+<dd><p>This command adds the <i class="arg">string</i> to the history. The result of the
+command is a boolean flag, <b class="const">true</b> if the addition suceeded, and
+<b class="const">false</b> otherwise. The string will not be added if it is
+identical to the last entry of the history, preventing entry of
+adjacent duplicates.</p>
+<p>The history reaching its maximal size does not prevent the
+addition of the string. It simply bumps of the oldest entry to make
+room for the new.</p></dd>
+<dt><a name="4"><b class="cmd">linenoise history clear</b></a></dt>
+<dd><p>This command clears (empties) the history.</p></dd>
+<dt><a name="5"><b class="cmd">linenoise history list</b></a></dt>
+<dd><p>This command returns a list containing the history. The first element
+of the result is the oldest entry in the history, and the last element
+the newest.</p></dd>
+<dt><a name="6"><b class="cmd">linenoise history load</b> <i class="arg">path</i></a></dt>
+<dd><p>This command loads the contents of the file at <i class="arg">path</i> into the
+history. Note, this is not a replacement, but an appending, like with
+<b class="cmd">linenoise history add</b>.</p></dd>
+<dt><a name="7"><b class="cmd">linenoise history maxsize</b> <span class="opt">?<i class="arg">n</i>?</span></a></dt>
+<dd><p>This command returns the current maximal size of the system's history,
+as a positive integer number greater than zero. If the argument is
+specified it has to be a positive integer number greater than zero,
+which becomes the new maximal size of the history. This new value is
+then returned.</p>
+<p>If the new maximal size is less than the current size of the
+history the oldest entries are discarded to bring the history down to
+the new size.</p></dd>
+<dt><a name="8"><b class="cmd">linenoise history save</b> <i class="arg">path</i></a></dt>
+<dd><p>This command takes the history and stores it into the file at the
+specified <i class="arg">path</i>. The previous contents of the file are written
+over and lost.</p></dd>
+<dt><a name="9"><b class="cmd">linenoise history size</b></a></dt>
+<dd><p>This command returns the number of entries in the history, as positive
+integer number (including zero).</p></dd>
+<dt><a name="10"><b class="cmd">linenoise prompt</b> <span class="opt">?options...?</span></a></dt>
+<dd><p>This command implements a one-shot prompt (instead of a REPL),
+returning the string entered by the user after completing the
+interaction.</p>
+<p>The recognized options are similar to what is recognized by
+<b class="cmd">cmdloop</b>, albeit reduced and simplified:</p>
+<dl class="options">
+<dt><b class="option">-complete</b> cmdprefix</dt>
+<dd><p>The value of this option is a command prefix taking the current
+contents of the line buffer as its single argument and returning a
+list of possible completions. The default is the empty command,
+disabling command completion.</p></dd>
+<dt><b class="option">-hidden</b> boolean</dt>
+<dd><p>The value of this option specifies if the command should hide user
+input (<b class="const">true</b>), or not. The default value is <b class="const">false</b>, for
+visible line entry. A use case for this option is the entry of
+passwords and the like.</p></dd>
+<dt><b class="option">-history</b> boolean</dt>
+<dd><p>The value of this option specifies if the command should put the
+entered string into the history (<b class="const">true</b>), or not. The default
+value is <b class="const">false</b>, leaving the history untouched.</p></dd>
+<dt><b class="option">-prompt</b> string</dt>
+<dd><p>The value of this option is the string to use as the prompt. The
+default value is &quot;<b class="const">% </b>&quot;.</p></dd>
+</dl></dd>
+</dl>
+</div>
+<div id="section3" class="section"><h2><a name="section3">Authors</a></h2>
+<p>Andreas Kupries (Tcl Binding),
+Steve Bennett (extended linenoise C library),
+Salvatore Sanfilippo (Antirez, original linenoise C library).</p>
+</div>
+<div id="section4" class="section"><h2><a name="section4">Bugs, Ideas, Feedback</a></h2>
+<p>This document, and the package it describes, will undoubtedly contain
+bugs and other problems.
+Please report them at <a href="https://github.com/andreas-kupries/tcl-linenoise/issues">https://github.com/andreas-kupries/tcl-linenoise/issues</a>.
+Ideas for enhancements you may have for either package, application,
+and/or the documentation are also very welcome and should be reported
+at <a href="https://github.com/andreas-kupries/tcl-linenoise/issues">https://github.com/andreas-kupries/tcl-linenoise/issues</a> as well.</p>
+</div>
+<div id="keywords" class="section"><h2><a name="keywords">Keywords</a></h2>
+<p><a href="../../index.html#key7">console</a>, <a href="../../index.html#key5">edit line</a>, <a href="../../index.html#key8">line editor</a>, <a href="../../index.html#key3">line reading</a>, <a href="../../index.html#key4">linenoise</a>, <a href="../../index.html#key6">raw mode</a>, <a href="../../index.html#key1">read line</a>, <a href="../../index.html#key0">terminal</a>, <a href="../../index.html#key2">tty</a></p>
+</div>
+<div id="category" class="section"><h2><a name="category">Category</a></h2>
+<p>Binding</p>
+</div>
+<div id="copyright" class="section"><h2><a name="copyright">Copyright</a></h2>
+<p>Copyright &copy; 2013 Andreas Kupries</p>
+</div>
+</div></body></html>

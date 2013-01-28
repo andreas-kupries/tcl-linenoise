@@ -1,5 +1,5 @@
 '\"
-'\" Generated from file '/home/aku/Projects/Linenoise/tcllinenoise/embedded/man/files/linenoise_introduction.n' by tcllib/doctools with format 'nroff'
+'\" Generated from file '/net/nas/data/andreask/Dev/Linenoise/tcl-linenoise/embedded/man/files/linenoise_introduction.n' by tcllib/doctools with format 'nroff'
 '\" Copyright (c) 2013 Andreas Kupries
 '\"
 '\" The definitions below are for supplemental macros used in Tcl/Tk
@@ -245,7 +245,8 @@ linenoise_introduction \- Introduction To Linenoise
 .SH DESCRIPTION
 .PP
 Welcome to Linenoise, a binding to Antirez's \fBlinenoise\fR
-minimal line editor library.
+minimal line editor library, as modified and extended by Steve
+Bennet of Workware.au
 .PP
 Linenoise is actually quite simple. Using antirez's C library for a
 minimal line editor in tty, coincidentally also called linenoise a
@@ -274,9 +275,11 @@ architecture as seen by a user.
 .SH "SYSTEM ARCHITECTURE"
 The system's architecture is super simple. There are only two layers,
 consisting of the linenoise core, and of the binding sitting on
-top. The user sees only binding, and nothing else.
+top. The user sees only the binding, and nothing else.
 .SH AUTHORS
-Andreas Kupries, Antirez (C level linenoise)
+Andreas Kupries (Tcl Binding),
+Steve Bennett (extended linenoise C library),
+Salvatore Sanfilippo (Antirez, original linenoise C library).
 .SH "BUGS, IDEAS, FEEDBACK"
 This document, and the package it describes, will undoubtedly contain
 bugs and other problems.

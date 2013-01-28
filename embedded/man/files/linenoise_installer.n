@@ -270,6 +270,9 @@ For details see \fBTcl\fR.
 .IP [2]
 The \fBcritcl\fR package (C embedding) for \fBTcl\fR.
 For details see \fBCriTcl\fR.
+.IP [3]
+The \fBkettle\fR package and application for \fBTcl\fR.
+For details see \fBKettle\fR.
 .PP
 This list assumes that the machine where Linenoise is to be installed is
 essentially clean. Of course, if parts of the dependencies listed
@@ -360,6 +363,28 @@ install CriTcl, including a list of its dependencies.
 Its instructions will not be repeated here. If there are
 problems with their directions please file a bug against the critcl
 project, and not tcl-linenoise.
+.SS KETTLE
+To build Linenoise the build support package \fBkettle\fR is
+required.
+.PP
+This package must be available to the \fBtclsh\fR used to
+run Linenoise's build & installation process, and the \fBtclsh\fR
+used to run scripts requiring Linenoise.
+.PP
+Kettle's fossil repository can be found at
+\fIhttp://chiselapp.com/user/andreas_kupries/repository/kettle/home\fR.
+.PP
+The relevant repository branch is \fItrunk\fR.
+.PP
+Kettle has a build and installation guide much like this one for
+Linenoise, which can be found at the above site and explains how to
+retrieve its sources and build the package, which dependencies are
+required, etc. The direct link to this guide is
+\fIhttp://chiselapp.com/user/andreas_kupries/repository/kettle/doc/tip/embedded/www/doc/files/kettle_installer.html\fR
+.PP
+Its instructions will not be repeated here. If there are
+problems with their directions please file a bug against the kettle
+project, and not Linenoise.
 .SH "BUILD & INSTALLATION"
 To install linenoise simply run
 .CS

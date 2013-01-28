@@ -1,6 +1,6 @@
 
 <html><head>
-<title>linenoise_license - Tcl Line Editor</title>
+<title>linenoise_devguide - Tcl Line Editor</title>
 <style type="text/css"><!--
     HTML {
 	background: 	#FFFFFF;
@@ -92,11 +92,11 @@
     }
 --></style>
 </head>
-<! -- Generated from file '/net/nas/data/andreask/Dev/Linenoise/tcl-linenoise/embedded/www/doc/files/license.html' by tcllib/doctools with format 'html'
+<! -- Generated from file '/net/nas/data/andreask/Dev/Linenoise/tcl-linenoise/embedded/www/doc/files/linenoise_devguide.html' by tcllib/doctools with format 'html'
    -->
 <! -- Copyright &copy; 2013 Andreas Kupries
    -->
-<! -- CVS: $Id$ linenoise_license.n
+<! -- CVS: $Id$ linenoise_devguide.n
    -->
 <body><div class="doctools">
 <hr> [
@@ -104,15 +104,21 @@
 | <a href="../toc.html">Table Of Contents</a>
 | <a href="../../index.html">Keyword Index</a>
 ] <hr>
-<h1 class="title">linenoise_license(n) 1 doc &quot;Tcl Line Editor&quot;</h1>
+<h1 class="title">linenoise_devguide(n) 1 doc &quot;Tcl Line Editor&quot;</h1>
 <div id="name" class="section"><h2><a name="name">Name</a></h2>
-<p>linenoise_license - Linenoise - License</p>
+<p>linenoise_devguide - Linenoise - The Developer's Guide</p>
 </div>
 <div id="toc" class="section"><h2><a name="toc">Table Of Contents</a></h2>
 <ul class="toc">
 <li class="section"><a href="#toc">Table Of Contents</a></li>
 <li class="section"><a href="#section1">Description</a></li>
-<li class="section"><a href="#section2">License</a></li>
+<li class="section"><a href="#section2">Developing for Linenoise</a>
+<ul>
+<li class="subsection"><a href="#subsection1">Architecture &amp; Concepts</a></li>
+<li class="subsection"><a href="#subsection2">Requirements</a></li>
+<li class="subsection"><a href="#subsection3">Directory structure</a></li>
+</ul>
+</li>
 <li class="section"><a href="#section3">Authors</a></li>
 <li class="section"><a href="#section4">Bugs, Ideas, Feedback</a></li>
 <li class="section"><a href="#keywords">Keywords</a></li>
@@ -124,43 +130,78 @@
 <p>Welcome to Linenoise, a binding to Antirez's <b class="package"><a href="linenoise.html">linenoise</a></b>
 minimal line editor library, as modified and extended by Steve
 Bennet of Workware.au</p>
-<p>The package is under the BSD license.</p>
+<p>This document is a guide for developers working on Linenoise,
+i.e. maintainers fixing bugs, extending the package's functionality,
+etc.</p>
+<p>Please read</p>
+<ol class="enumerated">
+<li><p><i class="term"><a href="license.html">Linenoise - License</a></i>,</p></li>
+<li><p><i class="term"><a href="linenoise_sources.html">Linenoise - How To Get The Sources</a></i>, and</p></li>
+<li><p><i class="term"><a href="linenoise_installer.html">Linenoise - The Installer's Guide</a></i></p></li>
+</ol>
+<p>first, if that was not done already.</p>
+<p>Here we assume that the sources are already available in a directory
+of your choice, and that you not only know how to build and install
+them, but also have all the necessary requisites to actually do
+so. The guide to the sources in particular also explains which source
+code management system is used, where to find it, how to set it up,
+etc.</p>
 </div>
-<div id="section2" class="section"><h2><a name="section2">License</a></h2>
-<p>This software is copyrighted by Andreas Kupries and other
-parties.  The following terms apply to all files associated with the
-software unless explicitly disclaimed in individual files.</p>
-<p>The authors hereby grant permission to use, copy, modify,
-distribute, and license this software and its documentation for any
-purpose, provided that existing copyright notices are retained in all
-copies and that this notice is included verbatim in any
-distributions. No written agreement, license, or royalty fee is
-required for any of the authorized uses.  Modifications to this
-software may be copyrighted by their authors and need not follow the
-licensing terms described here, provided that the new terms are
-clearly indicated on the first page of each file where they apply.</p>
-<p>IN NO EVENT SHALL THE AUTHORS OR DISTRIBUTORS BE LIABLE TO ANY
-PARTY FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL
-DAMAGES ARISING OUT OF THE USE OF THIS SOFTWARE, ITS DOCUMENTATION, OR
-ANY DERIVATIVES THEREOF, EVEN IF THE AUTHORS HAVE BEEN ADVISED OF THE
-POSSIBILITY OF SUCH DAMAGE.</p>
-<p>THE AUTHORS AND DISTRIBUTORS SPECIFICALLY DISCLAIM ANY
-WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
-NON-INFRINGEMENT.  THIS SOFTWARE IS PROVIDED ON AN &quot;AS IS&quot; BASIS, AND
-THE AUTHORS AND DISTRIBUTORS HAVE NO OBLIGATION TO PROVIDE
-MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.</p>
-<p>GOVERNMENT USE: If you are acquiring this software on behalf of
-the U.S. government, the Government shall have only &quot;Restricted
-Rights&quot; in the software and related documentation as defined in the
-Federal Acquisition Regulations (FARs) in Clause 52.227.19 (c) (2).
-If you are acquiring the software on behalf of the Department of
-Defense, the software shall be classified as &quot;Commercial Computer
-Software&quot; and the Government shall have only &quot;Restricted Rights&quot; as
-defined in Clause 252.227-7014 (b) (3) of DFARs.  Notwithstanding the
-foregoing, the authors grant the U.S. Government and others acting in
-its behalf permission to use and distribute the software in accordance
-with the terms specified in this license.</p>
+<div id="section2" class="section"><h2><a name="section2">Developing for Linenoise</a></h2>
+<div id="subsection1" class="subsection"><h3><a name="subsection1">Architecture &amp; Concepts</a></h3>
+<p>The system's architecture is super simple. There are only two layers,
+consisting of the linenoise core, and of the binding sitting on
+top. The user sees only the binding, and nothing else.</p>
+</div>
+<div id="subsection2" class="subsection"><h3><a name="subsection2">Requirements</a></h3>
+<p>To develop for linenoise the following packages and applications must be
+available in the environment. These are all used by the <b class="cmd">build.tcl</b>
+helper application.</p>
+<dl class="definitions">
+<dt><b class="syscmd">dtplite</b></dt>
+<dd><p>A Tcl application provided by Tcllib, for the validation and
+conversion of <i class="term">doctools</i>-formatted text.</p></dd>
+<dt><b class="syscmd">kettle</b></dt>
+<dd><p>A Tcl package and application supporting an simplifying the build scripts.
+The installation guide provides the information on where to find it.</p></dd>
+</dl>
+</div>
+<div id="subsection3" class="subsection"><h3><a name="subsection3">Directory structure</a></h3>
+<dl class="definitions">
+<dt>Helpers</dt>
+<dd><dl class="definitions">
+<dt>&quot;<b class="file">build.tcl</b>&quot;</dt>
+<dd><p>This helper application provides various operations needed by a
+developer for linenoise, like regenerating the documentation,
+building and installing linenoise, etc.</p>
+<p>Running the command like</p>
+<pre class="example">
+	./build.tcl help
+</pre>
+<p>will provide more details about the available operations and their
+arguments.</p></dd>
+</dl></dd>
+<dt>Documentation</dt>
+<dd><dl class="definitions">
+<dt>&quot;<b class="file">doc/</b>&quot;</dt>
+<dd><p>This directory contains the documentation sources.
+They are written in <i class="term">doctools</i> format.</p></dd>
+<dt>&quot;<b class="file">embedded/</b>&quot;</dt>
+<dd><p>This directory contains the documentation converted to regular manpages
+(nroff) and HTML.
+It is called embedded because these files, while derived, are part of the
+git repository, i.e. embedded into it. This enables us to place these files
+where they are visible when serving the project's web interface.</p></dd>
+</dl></dd>
+<dt>Package Code</dt>
+<dd><dl class="definitions">
+<dt>&quot;<b class="file">linenoise.tcl</b>&quot;</dt>
+<dd><p>The Tcl code with embbeded C implementing the basic binding.</p></dd>
+<dt>&quot;<b class="file">policy.tcl</b>&quot;</dt>
+<dd><p>The Tcl code aggregating the basics into the final API as seen by the user.</p></dd>
+</dl></dd>
+</dl>
+</div>
 </div>
 <div id="section3" class="section"><h2><a name="section3">Authors</a></h2>
 <p>Andreas Kupries (Tcl Binding),
