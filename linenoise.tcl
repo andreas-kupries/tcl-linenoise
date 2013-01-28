@@ -200,11 +200,7 @@ critcl::cproc linenoise::history_setmax {int maxlen} boolean {
 
 # ATTENTION! We are poking into the internals of linenoise again.
 critcl::cproc linenoise::history_getmax {} int {
-#if 0
     return linenoiseHistoryGetMaxLen ();
-#else
-    return history_max_len;
-#endif
 }
 
 critcl::cproc linenoise::history_size {} int {
