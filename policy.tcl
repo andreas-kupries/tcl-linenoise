@@ -227,11 +227,11 @@ proc ::linenoise::prompt {args} {
     hidden $config(-hidden)
 
     set code [catch {
-	set result [Prompt $prompt $config(-complete)]
+	set result [Prompt $config(-prompt) $config(-complete)]
     } result options]
 
     if {!$code && $config(-history)} {
-	history add $buffer
+	history add $result
     }
 
     # Restore outer status of hidden
