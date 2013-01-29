@@ -339,8 +339,9 @@ proc ::linenoise::cmdloop {args} {
 	# Dispatch for execution.
 	set type fail
 	set fail [catch {
-	    {*}$config(-dispatch) $buffer
+	    set result [{*}$config(-dispatch) $buffer]
 	    set type ok
+	    set result $result
 	} result]
 
 	# Report results.
