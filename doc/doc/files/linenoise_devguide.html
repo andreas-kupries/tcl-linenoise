@@ -1,0 +1,228 @@
+
+<html><head>
+<title>linenoise_devguide - Tcl Line Editor</title>
+<style type="text/css"><!--
+    HTML {
+	background: 	#FFFFFF;
+	color: 		black;
+    }
+    BODY {
+	background: 	#FFFFFF;
+	color:	 	black;
+    }
+    DIV.doctools {
+	margin-left:	10%;
+	margin-right:	10%;
+    }
+    DIV.doctools H1,DIV.doctools H2 {
+	margin-left:	-5%;
+    }
+    H1, H2, H3, H4 {
+	margin-top: 	1em;
+	font-family:	sans-serif;
+	font-size:	large;
+	color:		#005A9C;
+	background: 	transparent;
+	text-align:		left;
+    }
+    H1.title {
+	text-align: center;
+    }
+    UL,OL {
+	margin-right: 0em;
+	margin-top: 3pt;
+	margin-bottom: 3pt;
+    }
+    UL LI {
+	list-style: disc;
+    }
+    OL LI {
+	list-style: decimal;
+    }
+    DT {
+	padding-top: 	1ex;
+    }
+    UL.toc,UL.toc UL, UL.toc UL UL {
+	font:		normal 12pt/14pt sans-serif;
+	list-style:	none;
+    }
+    LI.section, LI.subsection {
+	list-style: 	none;
+	margin-left: 	0em;
+	text-indent:	0em;
+	padding: 	0em;
+    }
+    PRE {
+	display: 	block;
+	font-family:	monospace;
+	white-space:	pre;
+	margin:		0%;
+	padding-top:	0.5ex;
+	padding-bottom:	0.5ex;
+	padding-left:	1ex;
+	padding-right:	1ex;
+	width:		100%;
+    }
+    PRE.example {
+	color: 		black;
+	background: 	#f5dcb3;
+	border:		1px solid black;
+    }
+    UL.requirements LI, UL.syntax LI {
+	list-style: 	none;
+	margin-left: 	0em;
+	text-indent:	0em;
+	padding:	0em;
+    }
+    DIV.synopsis {
+	color: 		black;
+	background: 	#80ffff;
+	border:		1px solid black;
+	font-family:	serif;
+	margin-top: 	1em;
+	margin-bottom: 	1em;
+    }
+    UL.syntax {
+	margin-top: 	1em;
+	border-top:	1px solid black;
+    }
+    UL.requirements {
+	margin-bottom: 	1em;
+	border-bottom:	1px solid black;
+    }
+--></style>
+</head>
+<! -- Generated from file '/net/nas/data/andreask/Dev/Linenoise/tcl-linenoise/embedded/www/doc/files/linenoise_devguide.html' by tcllib/doctools with format 'html'
+   -->
+<! -- Copyright &copy; 2013 Andreas Kupries
+   -->
+<! -- CVS: $Id$ linenoise_devguide.n
+   -->
+<body><div class="doctools">
+<hr> [
+  <a href="../../toc.html">Main Table Of Contents</a>
+| <a href="../toc.html">Table Of Contents</a>
+| <a href="../../index.html">Keyword Index</a>
+] <hr>
+<h1 class="title">linenoise_devguide(n) 1 doc &quot;Tcl Line Editor&quot;</h1>
+<div id="name" class="section"><h2><a name="name">Name</a></h2>
+<p>linenoise_devguide - Linenoise - The Developer's Guide</p>
+</div>
+<div id="toc" class="section"><h2><a name="toc">Table Of Contents</a></h2>
+<ul class="toc">
+<li class="section"><a href="#toc">Table Of Contents</a></li>
+<li class="section"><a href="#section1">Description</a></li>
+<li class="section"><a href="#section2">Developing for Linenoise</a>
+<ul>
+<li class="subsection"><a href="#subsection1">Architecture &amp; Concepts</a></li>
+<li class="subsection"><a href="#subsection2">Requirements</a></li>
+<li class="subsection"><a href="#subsection3">Directory structure</a></li>
+</ul>
+</li>
+<li class="section"><a href="#section3">Authors</a></li>
+<li class="section"><a href="#section4">Bugs, Ideas, Feedback</a></li>
+<li class="section"><a href="#keywords">Keywords</a></li>
+<li class="section"><a href="#category">Category</a></li>
+<li class="section"><a href="#copyright">Copyright</a></li>
+</ul>
+</div>
+<div id="section1" class="section"><h2><a name="section1">Description</a></h2>
+<p>Welcome to Linenoise, a binding to Antirez's <b class="package"><a href="linenoise.html">linenoise</a></b>
+minimal line editor library, as modified and extended by Steve
+Bennet of Workware.au</p>
+<p>This document is a guide for developers working on Linenoise,
+i.e. maintainers fixing bugs, extending the package's functionality,
+etc.</p>
+<p>Please read</p>
+<ol class="enumerated">
+<li><p><i class="term"><a href="license.html">Linenoise - License</a></i>,</p></li>
+<li><p><i class="term"><a href="linenoise_sources.html">Linenoise - How To Get The Sources</a></i>, and</p></li>
+<li><p><i class="term"><a href="linenoise_installer.html">Linenoise - The Installer's Guide</a></i></p></li>
+</ol>
+<p>first, if that was not done already.</p>
+<p>Here we assume that the sources are already available in a directory
+of your choice, and that you not only know how to build and install
+them, but also have all the necessary requisites to actually do
+so. The guide to the sources in particular also explains which source
+code management system is used, where to find it, how to set it up,
+etc.</p>
+</div>
+<div id="section2" class="section"><h2><a name="section2">Developing for Linenoise</a></h2>
+<div id="subsection1" class="subsection"><h3><a name="subsection1">Architecture &amp; Concepts</a></h3>
+<p>The system's architecture is super simple. There are only two layers,
+consisting of the linenoise core, and of the binding sitting on
+top. The user sees only the binding, and nothing else.</p>
+</div>
+<div id="subsection2" class="subsection"><h3><a name="subsection2">Requirements</a></h3>
+<p>To develop for linenoise the following packages and applications must be
+available in the environment. These are all used by the <b class="cmd">build.tcl</b>
+helper application.</p>
+<dl class="definitions">
+<dt><b class="syscmd">dtplite</b></dt>
+<dd><p>A Tcl application provided by Tcllib, for the validation and
+conversion of <i class="term">doctools</i>-formatted text.</p></dd>
+<dt><b class="syscmd">kettle</b></dt>
+<dd><p>A Tcl package and application supporting an simplifying the build scripts.
+The installation guide provides the information on where to find it.</p></dd>
+</dl>
+</div>
+<div id="subsection3" class="subsection"><h3><a name="subsection3">Directory structure</a></h3>
+<dl class="definitions">
+<dt>Helpers</dt>
+<dd><dl class="definitions">
+<dt>&quot;<b class="file">build.tcl</b>&quot;</dt>
+<dd><p>This helper application provides various operations needed by a
+developer for linenoise, like regenerating the documentation,
+building and installing linenoise, etc.</p>
+<p>Running the command like</p>
+<pre class="example">
+	./build.tcl help
+</pre>
+<p>will provide more details about the available operations and their
+arguments.</p></dd>
+</dl></dd>
+<dt>Documentation</dt>
+<dd><dl class="definitions">
+<dt>&quot;<b class="file">doc/</b>&quot;</dt>
+<dd><p>This directory contains the documentation sources.
+They are written in <i class="term">doctools</i> format.</p></dd>
+<dt>&quot;<b class="file">embedded/</b>&quot;</dt>
+<dd><p>This directory contains the documentation converted to regular manpages
+(nroff) and HTML.
+It is called embedded because these files, while derived, are part of the
+git repository, i.e. embedded into it. This enables us to place these files
+where they are visible when serving the project's web interface.</p></dd>
+</dl></dd>
+<dt>Package Code</dt>
+<dd><dl class="definitions">
+<dt>&quot;<b class="file">linenoise.tcl</b>&quot;</dt>
+<dd><p>The Tcl code with embbeded C implementing the basic binding.</p></dd>
+<dt>&quot;<b class="file">policy.tcl</b>&quot;</dt>
+<dd><p>The Tcl code aggregating the basics into the final API as seen by the user.</p></dd>
+</dl></dd>
+</dl>
+</div>
+</div>
+<div id="section3" class="section"><h2><a name="section3">Authors</a></h2>
+<p>Andreas Kupries (Tcl Binding),
+Steve Bennett (extended linenoise C library),
+Salvatore Sanfilippo (Antirez, original linenoise C library).</p>
+</div>
+<div id="section4" class="section"><h2><a name="section4">Bugs, Ideas, Feedback</a></h2>
+<p>This document, and the package it describes, will undoubtedly contain
+bugs and other problems.
+Please report them at <a href="https://github.com/andreas-kupries/tcl-linenoise/issues">https://github.com/andreas-kupries/tcl-linenoise/issues</a>.
+Ideas for enhancements you may have for either package, application,
+and/or the documentation are also very welcome and should be reported
+at <a href="https://github.com/andreas-kupries/tcl-linenoise/issues">https://github.com/andreas-kupries/tcl-linenoise/issues</a> as well.</p>
+</div>
+<div id="keywords" class="section"><h2><a name="keywords">Keywords</a></h2>
+<p><a href="../../index.html#key7">console</a>, <a href="../../index.html#key5">edit line</a>, <a href="../../index.html#key8">line editor</a>, <a href="../../index.html#key3">line reading</a>, <a href="../../index.html#key4">linenoise</a>, <a href="../../index.html#key6">raw mode</a>, <a href="../../index.html#key1">read line</a>, <a href="../../index.html#key0">terminal</a>, <a href="../../index.html#key2">tty</a></p>
+</div>
+<div id="category" class="section"><h2><a name="category">Category</a></h2>
+<p>Binding</p>
+</div>
+<div id="copyright" class="section"><h2><a name="copyright">Copyright</a></h2>
+<p>Copyright &copy; 2013 Andreas Kupries</p>
+</div>
+</div></body></html>

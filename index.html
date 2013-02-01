@@ -1,41 +1,122 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>tcl-linenoise by andreas-kupries</title>
+<head>
+  <meta charset='utf-8'>
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>tcl-linenoise</h1>
-        <p>Tcl binding to the linenoise line editing library</p>
+  <title>andreas-kupries/tcllinenoise @ GitHub</title>
 
-        <p class="view"><a href="https://github.com/andreas-kupries/tcl-linenoise">View the Project on GitHub <small>andreas-kupries/tcl-linenoise</small></a></p>
+  <style type="text/css">
+    body {
+      margin-top: 1.0em;
+      background-color: white;
+      font-family: Helvetica, Arial, FreeSans, san-serif;
+      color: #000000;
+    }
+    #container {
+      margin: 0 auto;
+      width: 700px;
+    }
+    h1 { font-size: 3.8em; color: #113c30; margin: 50px 0 3px 0; }
+    h1 .small { font-size: 0.4em; }
+    h1 a { text-decoration: none }
+    h2 { font-size: 1.5em; color: #113c30; }
+    h3 { text-align: center; color: #113c30; }
+    a { color: #113c30; }
+    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
+    .download { float: right; }
+    pre { background: #000; color: #fff; padding: 15px;}
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .footer { text-align:center; padding-top:30px; font-style: italic; }
+    #banner { position: absolute; top: 10px; left: 1%; border: 0; }
+  </style>
+</head>
 
+<body>
+  <a href="http://github.com/andreas-kupries/tcllinenoise"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+  <!-- %%TODO%% linenoise logo <img id="banner" src="artwork/tcllinenoise.gif"> -->
 
-        <ul>
-          <li><a href="https://github.com/andreas-kupries/tcl-linenoise/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/andreas-kupries/tcl-linenoise/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/andreas-kupries/tcl-linenoise">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>Fill this later, see critcl for template.</h1>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/andreas-kupries">andreas-kupries</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+  <div id="container">
+    <div class="download">
+      <a href="http://github.com/andreas-kupries/tcllinenoise/zipball/master">
+        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
+      <a href="http://github.com/andreas-kupries/tcllinenoise/tarball/master">
+        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
+
+    <h1><a href="http://github.com/andreas-kupries/tcllinenoise">Tcl Linenoise</a>
+      <span class="small">by <a href="http://github.com/andreas-kupries">andreas-kupries</a></span></h1>
+
+    <div class="description">
+      Tcl Linenoise is a binding to Antirez's linenoise library for creation of line editors, as
+      extended modified by Steve Bennett, and myself.
+    </div>
+
+<!--    <p>&nbsp;</p> -->
+
+<h2>Instructions</h2>
+
+<p><ul>
+<p><a href="doc/doc/files/license.html">BSD Licensed</a></p>
+<p><a href="doc/doc/files/linenoise_sources.html">How To Get The Sources</a></p>
+<p><a href="doc/doc/files/linenoise_installer.html">How To Build And Install The Packages</a></p>
+<p><a href="#download">Downloads</a></p>
+<p><a href="doc/doc/files/linenoise_devguide.html">The Developer's Guide</a></p>
+<p><a href="https://github.com/andreas-kupries/tcllinenoise/issues">Reporting Bugs, Ideas, Feedback, ...</a></p>
+</ul></p>
+
+<h2>Documentation</h2>
+
+<p><ul>
+<p><a href="doc/doc/files/linenoise_introduction.html">User Introduction</a></p>
+<p><a href="doc/toc.html">Command Reference</a></p>
+</ul></p>
+
+<h2>Authors</h2>
+
+<p><ul>
+Andreas Kupries (akupries@shaw.ca)<br/>
+Steve Bennett<br/>
+Salvator Sanfillipo (Antirez)
+</ul></p>
+
+<h2>Contact</h2>
+
+<p><ul>
+Andreas Kupries (akupries@shaw.ca)<br/>
+</ul></p>
+
+<!-- ----------------------------------------------------------------- -->
+
+<h2><a name="download"></a>Downloads</h2>
+<ul>
+<p>Please use github's facilities to retrieve the revision and branch
+of the package you want or need.</p>
+
+<p>And now for the various downloads available here:</p>
+<ol>
+<li>Snapshots, branch master<ul>
+<p>To retrieve a snapshot of the current sources (head
+of git branch master), in various formats use the following links:
+<ul>
+<li><a href="http://github.com/andreas-kupries/tcllinenoise/zipball/master">Zip Archive</a></li>
+<li><a href="http://github.com/andreas-kupries/tcllinenoise/tarball/master">Gzip-compressed Tar Archive</a></li>
+</ul>
+</p></ul></li>
+
+<li>Repository clone<ul>
+<p>Lastly, it is of course also possible to retrieve the whole
+project, i.e. clone it with <a href="http://git-scm.com">Git</a>,
+by running:
+  <pre>$ git clone git://github.com/andreas-kupries/tcllinenoise</pre>
+</p></ul></li>
+
+</ul>
+
+<!-- ----------------------------------------------------------------- -->
+  <div class="footer">
+    Get the source code on GitHub : <a href="http://github.com/andreas-kupries/tcllinenoise">andreas-kupries/tcllinenoise</a>
+  </div>
+<!-- ----------------------------------------------------------------- -->
+</div>
+</body>
 </html>
