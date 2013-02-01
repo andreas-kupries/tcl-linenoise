@@ -17,7 +17,7 @@ used to run scripts requiring Linenoise.
 Linenoise, which can be found at the above site and explains how to
 retrieve its sources and build the package, which dependencies are
 required, etc. The direct link to this guide is
-[uri http://chiselapp.com/user/andreas_kupries/repository/Kettle/doc/tip/embedded/www/doc/files/Kettle_installer.html]
+[uri http://chiselapp.com/user/andreas_kupries/repository/Kettle/doc/tip/embedded/www/doc/files/kettle_installer.html]
 
 [para] Its instructions will not be repeated here. If there are
 problems with their directions please file a bug against the kettle
