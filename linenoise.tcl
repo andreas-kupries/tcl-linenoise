@@ -47,12 +47,13 @@ critcl::license \
     {Under a BSD license.}
 
 critcl::summary \
-    {A line-editor package build on top of antirez's linenoise C library}
+    {A line-editor package build on top of Steve Bennet's extensions to Salvator's (antirez) linenoise C library}
 
 critcl::description {
     This package provides access to antirez's linenoise library for
-    creating a line editors. Difference to readline/editline is
-    the minimal approach of linenoise.
+    creating a line editor, as modified and extended by Steve Bennett
+    (msteveb) of Workware, and myself. An important difference to
+    readline/editline is the minimal approach of linenoise.
 }
 
 critcl::subject \
@@ -61,7 +62,16 @@ critcl::subject \
     {line reader}
 
 critcl::meta location \
-    http://andreas-kupries.github.com/critcl
+    http://github.com/andreas-kupries/tcl-linenoise
+
+critcl::meta location/c-library \
+    http://github.com/andreas-kupries/linenoise
+
+critcl::meta location/c-library/msteveb \
+    http://github.com/msteveb/linenoise
+
+critcl::meta location/c-library/origin \
+    http://github.com/antirez/linenoise
 
 # # ## ### ##### ######## ############# #####################
 ## Implementation.
