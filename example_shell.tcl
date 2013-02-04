@@ -1,4 +1,4 @@
-lappend auto_path ZZZ/lib
+
 package require linenoise
 
 puts "linenoise [package require linenoise]"
