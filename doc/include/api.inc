@@ -9,7 +9,8 @@ command.
 This command implements the core of a REPL (read-eval-print
 loop). While the defaults of the various options are geared towards
 the REPL of a Tcl shell, other types of REPL can implemented just fine
-by overriding them with the proper callbacks.
+by overriding them with the proper callbacks. By default the loop can
+be aborted only by entering Control-C on the keyboard, or equivalent. 
 
 [para] The recognized options are
 
@@ -40,6 +41,12 @@ the execution are caught and printed through [option -report] as well.
 
 The default value simply runs the command in the context calling the
 REPL.
+
+[opt_def -exit cmdprefix]
+
+The value of this option is a command prefix taking no arguments and
+returning a boolean value indicating if the command loop should be
+stopped ([const true]), or not. The default value never stops the loop.
 
 [opt_def -history boolean]
 

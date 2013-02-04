@@ -277,10 +277,14 @@ proc ::linenoise::cmdloop {args} {
 		}
 	    }
 	}}}
+	-exit {apply {{} {
+	    return 0
+	}}}
     }
 
     foreach {o v} $args {
 	switch -exact -- $o {
+	    -exit     -
 	    -complete -
 	    -prompt1  -
 	    -prompt2  -
@@ -307,7 +311,7 @@ proc ::linenoise::cmdloop {args} {
     set savedhidden [hidden]
 
     set run 1
-    while {$run} {
+    while {$run && ![{*}$config(-exit)]} {
 	set prompt [{*}$config(-prompt1)]
 	set buffer {}
 	while 1 {

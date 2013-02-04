@@ -249,6 +249,8 @@ package require \fBlinenoise  ?0?\fR
 .sp
 \fBlinenoise cmdloop\fR ?options...?
 .sp
+\fBlinenoise columns\fR
+.sp
 \fBlinenoise hidden\fR ?\fIenable\fR?
 .sp
 \fBlinenoise history add\fR \fIstring\fR
@@ -289,7 +291,8 @@ command.
 This command implements the core of a REPL (read-eval-print
 loop). While the defaults of the various options are geared towards
 the REPL of a Tcl shell, other types of REPL can implemented just fine
-by overriding them with the proper callbacks.
+by overriding them with the proper callbacks. By default the loop can
+be aborted only by entering Control-C on the keyboard, or equivalent.
 .sp
 The recognized options are
 .RS
@@ -315,6 +318,11 @@ delivered to option \fB-report\fR for printing. Errors thrown by
 the execution are caught and printed through \fB-report\fR as well.
 The default value simply runs the command in the context calling the
 REPL.
+.TP
+\fB-exit\fR cmdprefix
+The value of this option is a command prefix taking no arguments and
+returning a boolean value indicating if the command loop should be
+stopped (\fBtrue\fR), or not. The default value never stops the loop.
 .TP
 \fB-history\fR boolean
 The value of this option specifies if the command should put the
@@ -343,6 +351,11 @@ itself, and "printing" this data in some way.
 The default value prints ok result to stdout and fail results to
 stderr.
 .RE
+.TP
+\fBlinenoise columns\fR
+This command returns the current width of the console window the
+package is talking to. This enables the user to adapt its output (for
+example help texts) to the console.
 .TP
 \fBlinenoise hidden\fR ?\fIenable\fR?
 This command returns the current state of the system's hidden flag,
