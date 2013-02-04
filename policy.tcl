@@ -284,11 +284,12 @@ proc ::linenoise::cmdloop {args} {
 
     foreach {o v} $args {
 	switch -exact -- $o {
-	    -exit     -
-	    -complete -
-	    -prompt1  -
-	    -prompt2  -
-	    -dispatch {
+	    -exit      -
+	    -complete  -
+	    -continued -
+	    -prompt1   -
+	    -prompt2   -
+	    -dispatch  {
 		set config($o) $v
 	    }
 	    -history {
