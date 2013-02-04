@@ -357,7 +357,7 @@ proc ::linenoise::cmdloop {args} {
 
 namespace eval linenoise {
     # primitive commands:
-    # - clear
+    # - columns
     # - prompt (with completion) | wrapped
     # - history_add              | sub-ensemble, see above.
     # - history_clear            |
@@ -371,6 +371,6 @@ namespace eval linenoise {
     # porcelain
     # - cmdloop
 
-    namespace export clear history hidden prompt cmdloop
+    namespace export columns history hidden prompt cmdloop
     namespace ensemble create
 }

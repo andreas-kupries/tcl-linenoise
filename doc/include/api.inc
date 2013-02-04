@@ -77,6 +77,12 @@ stderr.
 
 [list_end]
 
+[call [cmd {linenoise columns}]]
+
+This command returns the current width of the console window the
+package is talking to. This enables the user to adapt its output (for
+example help texts) to the console.
+
 [call [cmd {linenoise hidden}] [opt [arg enable]]]
 
 This command returns the current state of the system's hidden flag,

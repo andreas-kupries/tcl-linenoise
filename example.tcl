@@ -7,6 +7,8 @@ puts "linenoise [package require linenoise]"
 puts "Max history: [linenoise history max]"
 puts "New Max:     [linenoise history max 20]"
 
+puts "Width: [linenoise columns]"
+
 proc do-complete {line} {
     if {$line ne "h"} return
     list hello {hello there}

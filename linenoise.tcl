@@ -257,6 +257,10 @@ critcl::cproc linenoise::clear {} void {
     linenoiseClearScreen ();
 }}
 
+critcl::cproc linenoise::columns {} int {
+    return linenoiseColumns ();
+}
+
 critcl::cproc linenoise::Prompt {
     Tcl_Interp* interp
     char*       prompt
