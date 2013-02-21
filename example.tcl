@@ -17,7 +17,7 @@ proc do-complete {line} {
 linenoise history load history.txt
 puts "In history: [linenoise history size]"
 
-puts "echo: [linenoise prompt "hello> " do-complete]"
+puts "echo: [linenoise prompt -prompt "hello> " -complete do-complete]"
 
 linenoise history clear
 puts "In history: [linenoise history size]"
@@ -28,11 +28,11 @@ linenoise history add upsilon
 puts "In history: [linenoise history size]"
 puts \t[join [linenoise history list] \n\t]
 
-puts "echo: [linenoise prompt "world> "]"
+puts "echo: [linenoise prompt -prompt "world> "]"
 
 linenoise history save history_saved.txt
 
 
 linenoise hidden 1
-puts "echo: [linenoise prompt "password> "]"
+puts "echo: [linenoise prompt -prompt "password> "]"
 linenoise hidden 0
