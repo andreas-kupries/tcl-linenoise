@@ -240,14 +240,29 @@ proc ::linenoise::prompt {args} {
     return -options $options $result
 }
 
-proc ::linenoise::hidden {{new {}}} {
-    if {[llength [info level 0]] == 2} {
-	if {![string is boolean -strict $new]} {
-	    return -code error "Expected a boolean, got \"$new\""
+if {[llength [info commands ::linenoise::hidden_*]]} {
+    # Hidden input is supported
+    proc ::linenoise::hidden {{new {}}} {
+	if {[llength [info level 0]] == 2} {
+	    if {![string is boolean -strict $new]} {
+		return -code error "Expected a boolean, got \"$new\""
+	    }
+	    ::linenoise::hidden_set $new
 	}
-	::linenoise::hidden_set $new
+	return [::linenoise::hidden_get]
     }
-    return [::linenoise::hidden_get]
+} else {
+    # Hidden input is not supported.
+    proc ::linenoise::hidden {{new {}}} {
+	if {[llength [info level 0]] == 2} {
+	    if {![string is boolean -strict $new]} {
+		return -code error "Expected a boolean, got \"$new\""
+	    }
+	    if {!$new} return
+	    return -code error "This build of linenoise does not support hidden input"
+	}
+	return 0
+    }
 }
 
 proc ::linenoise::cmdloop {args} {

@@ -33,6 +33,8 @@ if {![critcl::compiling]} {
     error "Unable to build linenoise, no proper compiler found."
 }
 
+set hashidden 1
+
 # # ## ### ##### ######## ############# #####################
 ## Administrivia
 
@@ -236,14 +238,19 @@ critcl::cproc linenoise::history_list {} Tcl_Obj* {
 
 # # ## ### ##### ######## ############# #####################
 ## Inner API: Main primitives
-## - clear screen
+## - modify/query the "hidden" flag
 ## - prompt for input, possibly with completion
 
-critcl::cproc linenoise::hidden_set {boolean enable} void {
-    linenoiseSetHidden (enable);
-}
-critcl::cproc linenoise::hidden_get {} boolean {
-    return linenoiseGetHidden ();
+if {$hashidden} {
+    critcl::msg { Hidden input is supported.}
+    critcl::cproc linenoise::hidden_set {boolean enable} void {
+	linenoiseSetHidden (enable);
+    }
+    critcl::cproc linenoise::hidden_get {} boolean {
+	return linenoiseGetHidden ();
+    }
+} else {
+    critcl::msg { Hidden input is NOT supported.}
 }
 
 if 0 {# may we have this ?
