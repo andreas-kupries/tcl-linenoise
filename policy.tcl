@@ -351,6 +351,8 @@ proc ::linenoise::cmdloop {args} {
 	    break
 	}
 
+	if {!$run} break
+
 	# Save command.
 	if {$config(-history)} {
 	    history add $buffer
