@@ -1,7 +1,9 @@
-
+#!/usr/bin/env tclsh
+# -*- tcl -*-
+package require Tcl 8.5
 package require linenoise
 
-puts "linenoise [package require linenoise]"
+puts "Linenoise [package require linenoise] loaded."
 #puts [package ifneeded linenoise [package present linenoise]]
 
 set counter 0
@@ -17,3 +19,4 @@ linenoise cmdloop \
 	return "[file tail [pwd]] ($counter)> "
     }}} -history on
 puts done
+exit
