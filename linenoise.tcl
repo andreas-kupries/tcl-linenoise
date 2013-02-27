@@ -20,12 +20,6 @@
 # Notes and ideas regarding the underlying linenoise C library
 #
 # - Note: Do I need the utf support, or is that term specific.
-# - Note: Use (void)-cast in IGNORE_RC istead of "if (EXPR)"?!
-# - Idea: Handle Page Up/Down keys to jump to history start/end.
-# - Idea: Allow edit mode "hidden input" for password entry and the like.
-# - Idea: Put ^K deleted text into a paste buffer, and allow re-entry
-#         via ^Y (see bash)
-#         Note that ^K works in history of bash, with ^Y in current buffer.
 
 # # ## ### ##### ######## ############# #####################
 ## Requisites
