@@ -1,5 +1,5 @@
 '\"
-'\" Generated from file '/net/nas/data/andreask/Dev/Linenoise/tcl-linenoise/embedded/man/files/linenoise.n' by tcllib/doctools with format 'nroff'
+'\" Generated from file '/home/aku/Projects/Linenoise/dev-tcl/embedded/man/files/linenoise\&.n' by tcllib/doctools with format 'nroff'
 '\" Copyright (c) 2013 Andreas Kupries
 '\"
 '\" The definitions below are for supplemental macros used in Tcl/Tk
@@ -241,13 +241,13 @@ Database Class:	\\fB\\$3\\fR
 .TH "linenoise" n 0 doc "Tcl Line Editor"
 .BS
 .SH NAME
-linenoise \- Linenoise Package Reference
+linenoise \- Linenoise - Package Reference
 .SH SYNOPSIS
-package require \fBTcl  8.4\fR
+package require \fBTcl  8\&.5\fR
 .sp
 package require \fBlinenoise  ?0?\fR
 .sp
-\fBlinenoise cmdloop\fR ?options...?
+\fBlinenoise cmdloop\fR ?options\&.\&.\&.?
 .sp
 \fBlinenoise columns\fR
 .sp
@@ -267,32 +267,32 @@ package require \fBlinenoise  ?0?\fR
 .sp
 \fBlinenoise history size\fR
 .sp
-\fBlinenoise prompt\fR ?options...?
+\fBlinenoise prompt\fR ?options\&.\&.\&.?
 .sp
 .BE
 .SH DESCRIPTION
 .PP
 Welcome to Linenoise, a binding to Antirez's \fBlinenoise\fR
 minimal line editor library, as modified and extended by Steve
-Bennet of Workware.au
+Bennet of Workware\&.au
 .PP
 This document is the reference manpage for the \fBlinenoise\fR
 package, a binding to Antirez's minimal line editor library
-(of the same name) and as extended by Steve Bennet.
+(of the same name) and as extended by Steve Bennet\&.
 Its intended audience are developers wishing to write Tcl
-applications and packages using linenoise.
+applications and packages using linenoise\&.
 .SH API
-This section describe the available commands.
+This section describe the available commands\&.
 .PP
 All of them are found under the \fBlinenoise\fR ensemble
-command.
+command\&.
 .TP
-\fBlinenoise cmdloop\fR ?options...?
+\fBlinenoise cmdloop\fR ?options\&.\&.\&.?
 This command implements the core of a REPL (read-eval-print
-loop). While the defaults of the various options are geared towards
+loop)\&. While the defaults of the various options are geared towards
 the REPL of a Tcl shell, other types of REPL can implemented just fine
-by overriding them with the proper callbacks. By default the loop can
-be aborted only by entering Control-C on the keyboard, or equivalent.
+by overriding them with the proper callbacks\&. By default the loop can
+be aborted only by entering Control-C on the keyboard, or equivalent\&.
 .sp
 The recognized options are
 .RS
@@ -300,117 +300,117 @@ The recognized options are
 \fB-complete\fR cmdprefix
 The value of this option is a command prefix taking the current
 contents of the line buffer as its single argument and returning a
-list of possible completions. The default is the empty command,
-disabling command completion.
+list of possible completions\&. The default is the empty command,
+disabling command completion\&.
 .TP
 \fB-continued\fR cmdprefix
 The value of this option is a command prefix taking the user-entered
 line as its single argument and returning a boolean value telling the
-REPL if the line is incomplete and needs more input, i.e. a
-"continuation line".
-The default value recognizes incomplete Tcl command lines.
+REPL if the line is incomplete and needs more input, i\&.e\&. a
+"continuation line"\&.
+The default value recognizes incomplete Tcl command lines\&.
 .TP
 \fB-dispatch\fR cmdprefix
 The value of this option is a command prefix taking the user-entered
-line(s), i.e. command as its single argument and executing it. The
+line(s), i\&.e\&. command as its single argument and executing it\&. The
 result of the command is the result of the command prefix, and
-delivered to option \fB-report\fR for printing. Errors thrown by
-the execution are caught and printed through \fB-report\fR as well.
+delivered to option \fB-report\fR for printing\&. Errors thrown by
+the execution are caught and printed through \fB-report\fR as well\&.
 The default value simply runs the command in the context calling the
-REPL.
+REPL\&.
 .TP
 \fB-exit\fR cmdprefix
 The value of this option is a command prefix taking no arguments and
 returning a boolean value indicating if the command loop should be
-stopped (\fBtrue\fR), or not. The default value never stops the loop.
+stopped (\fBtrue\fR), or not\&. The default value never stops the loop\&.
 .TP
 \fB-history\fR boolean
 The value of this option specifies if the command should put the
-entered strings into the history (\fBtrue\fR), or not. The default
-value is \fBfalse\fR, leaving the history untouched.
+entered strings into the history (\fBtrue\fR), or not\&. The default
+value is \fBfalse\fR, leaving the history untouched\&.
 .TP
 \fB-prompt1\fR cmdprefix
-The value of this option is a command prefix without arguments.  Its
-result is treated as the main (primary) prompt used by the REPL. This
+The value of this option is a command prefix without arguments\&.  Its
+result is treated as the main (primary) prompt used by the REPL\&. This
 callback is run for each iteration of the main loop, allowing for
-changes to the prompt in response to a changing system state.
-The default value returns "\fB% \fR".
+changes to the prompt in response to a changing system state\&.
+The default value returns "\fB% \fR"\&.
 .TP
 \fB-prompt2\fR cmdprefix
-The value of this option is a command prefix without arguments.  Its
+The value of this option is a command prefix without arguments\&.  Its
 result is treated as the secondary prompt used by the REPL, when
-entering continuation lines. This callback is run for each iteration
+entering continuation lines\&. This callback is run for each iteration
 of the secondary loop, allowing for changes to the prompt in response
-to a changing system state.
-The default value returns "\fB> \fR".
+to a changing system state\&.
+The default value returns "\fB> \fR"\&.
 .TP
 \fB-report\fR cmdprefix
 The value of this option is a command prefix taking two arguments, the
 type of a command result (\fBok\fR, or \fBfail\fR), and the result
-itself, and "printing" this data in some way.
+itself, and "printing" this data in some way\&.
 The default value prints ok result to stdout and fail results to
-stderr.
+stderr\&.
 .RE
 .TP
 \fBlinenoise columns\fR
 This command returns the current width of the console window the
-package is talking to. This enables the user to adapt its output (for
-example help texts) to the console.
+package is talking to\&. This enables the user to adapt its output (for
+example help texts) to the console\&.
 .TP
 \fBlinenoise hidden\fR ?\fIenable\fR?
 This command returns the current state of the system's hidden flag,
 which is \fBtrue\fR if hidden input is activated, and \fBfalse\fR
-otherwise. If the argument is specified it has to be a boolean value
-which becomes the new value of the flag. This new value is then returned.
+otherwise\&. If the argument is specified it has to be a boolean value
+which becomes the new value of the flag\&. This new value is then returned\&.
 .TP
 \fBlinenoise history add\fR \fIstring\fR
-This command adds the \fIstring\fR to the history. The result of the
+This command adds the \fIstring\fR to the history\&. The result of the
 command is a boolean flag, \fBtrue\fR if the addition suceeded, and
-\fBfalse\fR otherwise. The string will not be added if it is
+\fBfalse\fR otherwise\&. The string will not be added if it is
 identical to the last entry of the history, preventing entry of
-adjacent duplicates.
+adjacent duplicates\&.
 .sp
 The history reaching its maximal size does not prevent the
-addition of the string. It simply bumps of the oldest entry to make
-room for the new.
+addition of the string\&. It simply bumps of the oldest entry to make
+room for the new\&.
 .TP
 \fBlinenoise history clear\fR
-This command clears (empties) the history.
+This command clears (empties) the history\&.
 .TP
 \fBlinenoise history list\fR
-This command returns a list containing the history. The first element
+This command returns a list containing the history\&. The first element
 of the result is the oldest entry in the history, and the last element
-the newest.
+the newest\&.
 .TP
 \fBlinenoise history load\fR \fIpath\fR
 This command loads the contents of the file at \fIpath\fR into the
-history. Note, this is not a replacement, but an appending, like with
-\fBlinenoise history add\fR.
+history\&. Note, this is not a replacement, but an appending, like with
+\fBlinenoise history add\fR\&.
 .TP
 \fBlinenoise history maxsize\fR ?\fIn\fR?
 This command returns the current maximal size of the system's history,
-as a positive integer number greater than zero. If the argument is
+as a positive integer number greater than zero\&. If the argument is
 specified it has to be a positive integer number greater than zero,
-which becomes the new maximal size of the history. This new value is
-then returned.
+which becomes the new maximal size of the history\&. This new value is
+then returned\&.
 .sp
 If the new maximal size is less than the current size of the
 history the oldest entries are discarded to bring the history down to
-the new size.
+the new size\&.
 .TP
 \fBlinenoise history save\fR \fIpath\fR
 This command takes the history and stores it into the file at the
-specified \fIpath\fR. The previous contents of the file are written
-over and lost.
+specified \fIpath\fR\&. The previous contents of the file are written
+over and lost\&.
 .TP
 \fBlinenoise history size\fR
 This command returns the number of entries in the history, as positive
-integer number (including zero).
+integer number (including zero)\&.
 .TP
-\fBlinenoise prompt\fR ?options...?
+\fBlinenoise prompt\fR ?options\&.\&.\&.?
 This command implements a one-shot prompt (instead of a REPL),
 returning the string entered by the user after completing the
-interaction.
+interaction\&.
 .sp
 The recognized options are similar to what is recognized by
 \fBcmdloop\fR, albeit reduced and simplified:
@@ -419,37 +419,37 @@ The recognized options are similar to what is recognized by
 \fB-complete\fR cmdprefix
 The value of this option is a command prefix taking the current
 contents of the line buffer as its single argument and returning a
-list of possible completions. The default is the empty command,
-disabling command completion.
+list of possible completions\&. The default is the empty command,
+disabling command completion\&.
 .TP
 \fB-hidden\fR boolean
 The value of this option specifies if the command should hide user
-input (\fBtrue\fR), or not. The default value is \fBfalse\fR, for
-visible line entry. A use case for this option is the entry of
-passwords and the like.
+input (\fBtrue\fR), or not\&. The default value is \fBfalse\fR, for
+visible line entry\&. A use case for this option is the entry of
+passwords and the like\&.
 .TP
 \fB-history\fR boolean
 The value of this option specifies if the command should put the
-entered string into the history (\fBtrue\fR), or not. The default
-value is \fBfalse\fR, leaving the history untouched.
+entered string into the history (\fBtrue\fR), or not\&. The default
+value is \fBfalse\fR, leaving the history untouched\&.
 .TP
 \fB-prompt\fR string
-The value of this option is the string to use as the prompt. The
-default value is "\fB% \fR".
+The value of this option is the string to use as the prompt\&. The
+default value is "\fB% \fR"\&.
 .RE
 .PP
 .SH AUTHORS
-\fIAndreas Kupries\fR [https://github.com/andreas-kupries/] (Tcl Binding),
-\fISteve Bennett\fR [https://github.com/msteveb/] (extended linenoise C library),
-\fISalvatore Sanfilippo\fR [https://github.com/antirez/] (Antirez, original linenoise C library).
+\fIAndreas Kupries\fR [https://github\&.com/andreas-kupries/] (Tcl Binding),
+\fISteve Bennett\fR [https://github\&.com/msteveb/] (extended linenoise C library),
+\fISalvatore Sanfilippo\fR [https://github\&.com/antirez/] (Antirez, original linenoise C library)\&.
 .SH "BUGS, IDEAS, FEEDBACK"
 This document, and the package it describes, will undoubtedly contain
-bugs and other problems.
+bugs and other problems\&.
 Please report them at the
-\fIIssues tracker\fR [https://github.com/andreas-kupries/tcl-linenoise/issues].
+\fIIssues tracker\fR [https://github\&.com/andreas-kupries/tcl-linenoise/issues]\&.
 Ideas for enhancements you may have for either package, application,
 and/or the documentation are also very welcome and should be reported
-at the \fIIssues tracker\fR [https://github.com/andreas-kupries/tcl-linenoise/issues] as well.
+at the \fIIssues tracker\fR [https://github\&.com/andreas-kupries/tcl-linenoise/issues] as well\&.
 .SH KEYWORDS
 console, edit line, line editor, line reading, linenoise, raw mode, read line, terminal, tty
 .SH CATEGORY

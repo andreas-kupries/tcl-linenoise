@@ -18,15 +18,16 @@ additionally provide
 
 [para]
 
-Please read [term {Linenoise - How To Get The Sources}] first, if that was
-not done already. Here we assume that all the sources are already
+Please read [term {Linenoise - How To Get The Sources}] first, if that
+was not done already. Here we assume that all the sources are already
 available in a directory of your choice.
 
 [para]
 
 [section Requisites]
 
-Before Linenoise can be build and used a number of requisites must be installed. These are:
+Before Linenoise can be build and used a number of requisites must be
+installed. These are:
 
 [list_begin enumerated]
 [enum] The scripting language Tcl.
@@ -39,8 +40,8 @@ Before Linenoise can be build and used a number of requisites must be installed.
        For details see [sectref Kettle].
 [list_end]
 
-This list assumes that the machine where Linenoise is to be installed is
-essentially clean. Of course, if parts of the dependencies listed
+This list assumes that the machine where Linenoise is to be installed
+is essentially clean. Of course, if parts of the dependencies listed
 below are already installed the associated steps can be skipped. It is
 still recommended to read their sections though, to validate that the
 dependencies they talk about are indeed installed.
@@ -89,6 +90,21 @@ syntax, invoke  [file build.tcl] with argument [method help], i.e., like
 [example {
     /path/to/tclsh /path/to/tcl-linenoise/build.tcl help
 }]
+
+[section {Build Variations}]
+
+The previous section assumes that the underlying linenoise C library
+sources were taken from [uri http://github.com/andreas-kupries/linenoise].
+
+If the C library came from [uri http://github.com/msteveb/linenoise]
+instead then hidden input, i.e. password prompts and the like are not
+supported.
+
+To disable the support in the binding simply edit the file
+[file linenoise.tcl] and change the setting of the flag variable
+[var hashidden] to [const false].
+
+The remainder of the binding adapts automatically.
 
 [include include/feedback.inc]
 [manpage_end]

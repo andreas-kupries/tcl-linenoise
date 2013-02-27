@@ -25,14 +25,16 @@ The official repository for Linenoise itself can be found at
 [uri http://andreas-kupries.github.com/tcl-linenoise].
 
 [para] The repository of the linenoise C library required by the
-binding can be found at
-[uri http://andreas-kupries.github.com/linenoise].
-This is a fork of the repository at
-[uri http://github.com/msteveb/linenoise].
+binding can be found at                          [uri http://github.com/andreas-kupries/linenoise].
+[para] This is a fork of the repository at       [uri http://github.com/msteveb/linenoise].
+[para] It in turn is a fork of the repository at [uri http://github.com/antirez/linenoise].
 
-[para] It is recommended to use my repository as it may contain
-features, changes and bugfixes required by the binding and not
-available in the original.
+[para] My repository is prefered for building as it may contain
+features, changes and bugfixes required by this binding which are not
+available in Steve Bennet's repository (This currently is only support
+for hidden input, i.e. password prompts and the like). Antirez's
+repository unfortunately has even less features, its use is not
+recommended.
 
 [section Retrieval]
 
@@ -61,12 +63,13 @@ retrieved via:
 [example {
     # Get the C library sources
     git clone http://github.com/andreas-kupries/linenoise
+    # or from the other repositories mentioned above.
 
     # Get the sources of the tcl binding
     git clone http://github.com/andreas-kupries/tcl-linenoise
 }]
 
-to get a checkout of the head of the trunks.
+The result is a checkout of the head of the master branches.
 
 [include include/feedback.inc]
 [manpage_end]

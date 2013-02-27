@@ -1,5 +1,5 @@
 '\"
-'\" Generated from file '/net/nas/data/andreask/Dev/Linenoise/tcl-linenoise/embedded/man/files/changes.n' by tcllib/doctools with format 'nroff'
+'\" Generated from file '/home/aku/Projects/Linenoise/dev-tcl/embedded/man/files/changes\&.n' by tcllib/doctools with format 'nroff'
 '\" Copyright (c) 2013 Andreas Kupries
 '\"
 '\" The definitions below are for supplemental macros used in Tcl/Tk
@@ -238,7 +238,7 @@ Database Class:	\\fB\\$3\\fR
 .de UL
 \\$1\l'|0\(ul'\\$2
 ..
-.TH "linenoise_changes" n 3.1 doc "Tcl Line Editor"
+.TH "linenoise_changes" n 3\&.1 doc "Tcl Line Editor"
 .BS
 .SH NAME
 linenoise_changes \- Linenoise Changes
@@ -246,22 +246,22 @@ linenoise_changes \- Linenoise Changes
 .PP
 Welcome to Linenoise, a binding to Antirez's \fBlinenoise\fR
 minimal line editor library, as modified and extended by Steve
-Bennet of Workware.au
+Bennet of Workware\&.au
 .PP
 This document provides an overview of the changes \fBlinenoise\fR
-underwent from version to version.
+underwent from version to version\&.
 .SH AUTHORS
-\fIAndreas Kupries\fR [https://github.com/andreas-kupries/] (Tcl Binding),
-\fISteve Bennett\fR [https://github.com/msteveb/] (extended linenoise C library),
-\fISalvatore Sanfilippo\fR [https://github.com/antirez/] (Antirez, original linenoise C library).
+\fIAndreas Kupries\fR [https://github\&.com/andreas-kupries/] (Tcl Binding),
+\fISteve Bennett\fR [https://github\&.com/msteveb/] (extended linenoise C library),
+\fISalvatore Sanfilippo\fR [https://github\&.com/antirez/] (Antirez, original linenoise C library)\&.
 .SH "BUGS, IDEAS, FEEDBACK"
 This document, and the package it describes, will undoubtedly contain
-bugs and other problems.
+bugs and other problems\&.
 Please report them at the
-\fIIssues tracker\fR [https://github.com/andreas-kupries/tcl-linenoise/issues].
+\fIIssues tracker\fR [https://github\&.com/andreas-kupries/tcl-linenoise/issues]\&.
 Ideas for enhancements you may have for either package, application,
 and/or the documentation are also very welcome and should be reported
-at the \fIIssues tracker\fR [https://github.com/andreas-kupries/tcl-linenoise/issues] as well.
+at the \fIIssues tracker\fR [https://github\&.com/andreas-kupries/tcl-linenoise/issues] as well\&.
 .SH KEYWORDS
 console, edit line, line editor, line reading, linenoise, raw mode, read line, terminal, tty
 .SH CATEGORY

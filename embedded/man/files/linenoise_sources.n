@@ -1,5 +1,5 @@
 '\"
-'\" Generated from file '/net/nas/data/andreask/Dev/Linenoise/tcl-linenoise/embedded/man/files/linenoise_sources.n' by tcllib/doctools with format 'nroff'
+'\" Generated from file '/home/aku/Projects/Linenoise/dev-tcl/embedded/man/files/linenoise_sources\&.n' by tcllib/doctools with format 'nroff'
 '\" Copyright (c) 2013 Andreas Kupries
 '\"
 '\" The definitions below are for supplemental macros used in Tcl/Tk
@@ -245,52 +245,56 @@ linenoise_sources \- Linenoise - How To Get The Sources
 .SH DESCRIPTION
 Welcome to Linenoise, a binding to Antirez's \fBlinenoise\fR
 minimal line editor library, as modified and extended by Steve
-Bennet of Workware.au
+Bennet of Workware\&.au
 .PP
 The audience of this document is anyone wishing to either have
 just a look at Linenoise's source code, or build the package, or to
-extend and modify it.
+extend and modify it\&.
 .PP
 For builders and developers we additionally provide
 .IP [1]
-\fILinenoise - License\fR.
+\fILinenoise - License\fR\&.
 .IP [2]
-\fILinenoise - The Installer's Guide\fR.
+\fILinenoise - The Installer's Guide\fR\&.
 .IP [3]
-\fILinenoise - The Developer's Guide\fR.
+\fILinenoise - The Developer's Guide\fR\&.
 .PP
-respectively.
+respectively\&.
 .SH "SOURCE LOCATION"
 The official repository for Linenoise itself can be found at
-\fIhttp://andreas-kupries.github.com/tcl-linenoise\fR.
+\fIhttp://andreas-kupries\&.github\&.com/tcl-linenoise\fR\&.
 .PP
 The repository of the linenoise C library required by the
-binding can be found at
-\fIhttp://andreas-kupries.github.com/linenoise\fR.
-This is a fork of the repository at
-\fIhttp://github.com/msteveb/linenoise\fR.
+binding can be found at                          \fIhttp://github\&.com/andreas-kupries/linenoise\fR\&.
 .PP
-It is recommended to use my repository as it may contain
-features, changes and bugfixes required by the binding and not
-available in the original.
+This is a fork of the repository at       \fIhttp://github\&.com/msteveb/linenoise\fR\&.
+.PP
+It in turn is a fork of the repository at \fIhttp://github\&.com/antirez/linenoise\fR\&.
+.PP
+My repository is prefered for building as it may contain
+features, changes and bugfixes required by this binding which are not
+available in Steve Bennet's repository (This currently is only support
+for hidden input, i\&.e\&. password prompts and the like)\&. Antirez's
+repository unfortunately has even less features, its use is not
+recommended\&.
 .SH RETRIEVAL
 Assuming that you simply wish to look at the sources, or build a
 specific revision, the easiest way of retrieving either binding or C
 library is to:
 .IP [1]
-Go to the respective repository site.
+Go to the respective repository site\&.
 .IP [2]
-Follow the 'Fork me on Github' link (top-right corner) to the project sources.
+Follow the 'Fork me on Github' link (top-right corner) to the project sources\&.
 .IP [3]
 Choose the revision under the Commits panel you wish to have and
 .IP [4]
-follow its 'Browse code' link to its detailed information page.
+follow its 'Browse code' link to its detailed information page\&.
 .IP [5]
-On that page, choose either the "ZIP" link to get a copy of this revision as a Zip archive.
+On that page, choose either the "ZIP" link to get a copy of this revision as a Zip archive\&.
 .PP
 .SH "SOURCE CODE MANAGEMENT"
 For the curious (or a developer-to-be), the sources are managed by the
-\fIGit SCM\fR [http://git-scm.com].
+\fIGit SCM\fR [http://git-scm\&.com]\&.
 .PP
 With that tool available the full history of all pieces can be
 retrieved via:
@@ -298,25 +302,26 @@ retrieved via:
 
 
     # Get the C library sources
-    git clone http://github.com/andreas-kupries/linenoise
+    git clone http://github\&.com/andreas-kupries/linenoise
+    # or from the other repositories mentioned above\&.
 
     # Get the sources of the tcl binding
-    git clone http://github.com/andreas-kupries/tcl-linenoise
+    git clone http://github\&.com/andreas-kupries/tcl-linenoise
 
 .CE
-to get a checkout of the head of the trunks.
+The result is a checkout of the head of the master branches\&.
 .SH AUTHORS
-\fIAndreas Kupries\fR [https://github.com/andreas-kupries/] (Tcl Binding),
-\fISteve Bennett\fR [https://github.com/msteveb/] (extended linenoise C library),
-\fISalvatore Sanfilippo\fR [https://github.com/antirez/] (Antirez, original linenoise C library).
+\fIAndreas Kupries\fR [https://github\&.com/andreas-kupries/] (Tcl Binding),
+\fISteve Bennett\fR [https://github\&.com/msteveb/] (extended linenoise C library),
+\fISalvatore Sanfilippo\fR [https://github\&.com/antirez/] (Antirez, original linenoise C library)\&.
 .SH "BUGS, IDEAS, FEEDBACK"
 This document, and the package it describes, will undoubtedly contain
-bugs and other problems.
+bugs and other problems\&.
 Please report them at the
-\fIIssues tracker\fR [https://github.com/andreas-kupries/tcl-linenoise/issues].
+\fIIssues tracker\fR [https://github\&.com/andreas-kupries/tcl-linenoise/issues]\&.
 Ideas for enhancements you may have for either package, application,
 and/or the documentation are also very welcome and should be reported
-at the \fIIssues tracker\fR [https://github.com/andreas-kupries/tcl-linenoise/issues] as well.
+at the \fIIssues tracker\fR [https://github\&.com/andreas-kupries/tcl-linenoise/issues] as well\&.
 .SH KEYWORDS
 console, edit line, line editor, line reading, linenoise, raw mode, read line, terminal, tty
 .SH CATEGORY

@@ -7,9 +7,14 @@
 [include include/welcome.inc]
 [para]
 
-Linenoise is actually quite simple. Using antirez's C library for a
-minimal line editor in tty, coincidentally also called linenoise a
-simple wrapper exposing the functionality to Tcl scripts was written.
+Linenoise is actually quite simple. Originally starting from Salvatore
+Sanfilippo's C library for a minimal line editor in tty,
+coincidentally also called linenoise, a simple wrapper exposing the
+functionality to Tcl scripts was written. This was later switched to
+Steve Bennet's fork of the same, due to its enhanced portability and
+set of features (Windows, UTF-8, more editing commands). Currently my
+own fork of the same is prefered, due to its support for hidden input,
+i.e. password prompts and the like.
 
 [para] This here is the result.
 
@@ -29,6 +34,7 @@ architecture as seen by a user.
 [comment {--- [enum] [term {Using Linenoise}] ---}]
 [enum] [term {Linenoise - How To Get The Sources}].
 [enum] [term {Linenoise - The Installer's Guide}].
+[enum] [term {Linenoise - Package Reference}]
 [enum] [term {Linenoise - The Developer's Guide}].
 [list_end]
 

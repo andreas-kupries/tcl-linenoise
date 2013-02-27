@@ -92,7 +92,7 @@
     }
 --></style>
 </head>
-<! -- Generated from file '/net/nas/data/andreask/Dev/Linenoise/tcl-linenoise/embedded/www/doc/files/linenoise_introduction.html' by tcllib/doctools with format 'html'
+<! -- Generated from file '/home/aku/Projects/Linenoise/dev-tcl/embedded/www/doc/files/linenoise_introduction.html' by tcllib/doctools with format 'html'
    -->
 <! -- Copyright &copy; 2013 Andreas Kupries
    -->
@@ -100,10 +100,10 @@
    -->
 <body><div class="doctools">
 <hr> [
-  <a href="../../toc.html">Main Table Of Contents</a>
+   <a href="../../toc.html">Main Table Of Contents</a>
 | <a href="../toc.html">Table Of Contents</a>
 | <a href="../../index.html">Keyword Index</a>
-] <hr>
+ ] <hr>
 <h1 class="title">linenoise_introduction(n) 3 doc &quot;Tcl Line Editor&quot;</h1>
 <div id="name" class="section"><h2><a name="name">Name</a></h2>
 <p>linenoise_introduction - Introduction To Linenoise</p>
@@ -125,9 +125,14 @@
 <p>Welcome to Linenoise, a binding to Antirez's <b class="package"><a href="linenoise.html">linenoise</a></b>
 minimal line editor library, as modified and extended by Steve
 Bennet of Workware.au</p>
-<p>Linenoise is actually quite simple. Using antirez's C library for a
-minimal line editor in tty, coincidentally also called linenoise a
-simple wrapper exposing the functionality to Tcl scripts was written.</p>
+<p>Linenoise is actually quite simple. Originally starting from Salvatore
+Sanfilippo's C library for a minimal line editor in tty,
+coincidentally also called linenoise, a simple wrapper exposing the
+functionality to Tcl scripts was written. This was later switched to
+Steve Bennet's fork of the same, due to its enhanced portability and
+set of features (Windows, UTF-8, more editing commands). Currently my
+own fork of the same is prefered, due to its support for hidden input,
+i.e. password prompts and the like.</p>
 <p>This here is the result.</p>
 <p>The following sections first reference a few related documents
 which may or may not be of interest to you, depending on if you are
@@ -142,6 +147,7 @@ architecture as seen by a user.</p>
 <li><p><i class="term"><a href="license.html">Linenoise - License</a></i>.</p></li>
 <li><p><i class="term"><a href="linenoise_sources.html">Linenoise - How To Get The Sources</a></i>.</p></li>
 <li><p><i class="term"><a href="linenoise_installer.html">Linenoise - The Installer's Guide</a></i>.</p></li>
+<li><p><i class="term"><a href="linenoise.html">Linenoise - Package Reference</a></i></p></li>
 <li><p><i class="term"><a href="linenoise_devguide.html">Linenoise - The Developer's Guide</a></i>.</p></li>
 </ol>
 </div>

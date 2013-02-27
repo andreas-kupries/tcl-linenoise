@@ -242,23 +242,23 @@ Database Class:	\\fB\\$3\\fR
 doc
 .RS
 .TP
-\fBlinenoise_introduction\fR
-\fIfiles/linenoise_introduction.n\fR: Introduction To Linenoise
-.TP
-\fBlinenoise_sources\fR
-\fIfiles/linenoise_sources.n\fR: Linenoise - How To Get The Sources
-.TP
-\fBlinenoise_license\fR
-\fIfiles/license.n\fR: Linenoise - License
-.TP
-\fBlinenoise_devguide\fR
-\fIfiles/linenoise_devguide.n\fR: Linenoise - The Developer's Guide
-.TP
-\fBlinenoise_install_guide\fR
-\fIfiles/linenoise_installer.n\fR: Linenoise - The Installer's Guide
+\fBlinenoise\fR
+\fIfiles/linenoise\&.n\fR: Linenoise - Package Reference
 .TP
 \fBlinenoise_changes\fR
-\fIfiles/changes.n\fR: Linenoise Changes
+\fIfiles/changes\&.n\fR: Linenoise Changes
 .TP
-\fBlinenoise\fR
-\fIfiles/linenoise.n\fR: Linenoise Package Reference
+\fBlinenoise_devguide\fR
+\fIfiles/linenoise_devguide\&.n\fR: Linenoise - The Developer's Guide
+.TP
+\fBlinenoise_install_guide\fR
+\fIfiles/linenoise_installer\&.n\fR: Linenoise - The Installer's Guide
+.TP
+\fBlinenoise_introduction\fR
+\fIfiles/linenoise_introduction\&.n\fR: Introduction To Linenoise
+.TP
+\fBlinenoise_license\fR
+\fIfiles/license\&.n\fR: Linenoise - License
+.TP
+\fBlinenoise_sources\fR
+\fIfiles/linenoise_sources\&.n\fR: Linenoise - How To Get The Sources

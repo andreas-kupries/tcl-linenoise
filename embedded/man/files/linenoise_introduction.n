@@ -1,5 +1,5 @@
 '\"
-'\" Generated from file '/net/nas/data/andreask/Dev/Linenoise/tcl-linenoise/embedded/man/files/linenoise_introduction.n' by tcllib/doctools with format 'nroff'
+'\" Generated from file '/home/aku/Projects/Linenoise/dev-tcl/embedded/man/files/linenoise_introduction\&.n' by tcllib/doctools with format 'nroff'
 '\" Copyright (c) 2013 Andreas Kupries
 '\"
 '\" The definitions below are for supplemental macros used in Tcl/Tk
@@ -246,48 +246,55 @@ linenoise_introduction \- Introduction To Linenoise
 .PP
 Welcome to Linenoise, a binding to Antirez's \fBlinenoise\fR
 minimal line editor library, as modified and extended by Steve
-Bennet of Workware.au
+Bennet of Workware\&.au
 .PP
-Linenoise is actually quite simple. Using antirez's C library for a
-minimal line editor in tty, coincidentally also called linenoise a
-simple wrapper exposing the functionality to Tcl scripts was written.
+Linenoise is actually quite simple\&. Originally starting from Salvatore
+Sanfilippo's C library for a minimal line editor in tty,
+coincidentally also called linenoise, a simple wrapper exposing the
+functionality to Tcl scripts was written\&. This was later switched to
+Steve Bennet's fork of the same, due to its enhanced portability and
+set of features (Windows, UTF-8, more editing commands)\&. Currently my
+own fork of the same is prefered, due to its support for hidden input,
+i\&.e\&. password prompts and the like\&.
 .PP
-This here is the result.
+This here is the result\&.
 .PP
 The following sections first reference a few related documents
 which may or may not be of interest to you, depending on if you are
 just a plain user of the system, trying to get and build/install it,
 or are going deep into the internals for either edification or
-modification.
+modification\&.
 .PP
 This is followed by a quick overview of the general
-architecture as seen by a user.
+architecture as seen by a user\&.
 .SH "RELATED DOCUMENTS"
 .IP [1]
-\fILinenoise - License\fR.
+\fILinenoise - License\fR\&.
 .IP [2]
-\fILinenoise - How To Get The Sources\fR.
+\fILinenoise - How To Get The Sources\fR\&.
 .IP [3]
-\fILinenoise - The Installer's Guide\fR.
+\fILinenoise - The Installer's Guide\fR\&.
 .IP [4]
-\fILinenoise - The Developer's Guide\fR.
+\fILinenoise - Package Reference\fR
+.IP [5]
+\fILinenoise - The Developer's Guide\fR\&.
 .PP
 .SH "SYSTEM ARCHITECTURE"
-The system's architecture is super simple. There are only two layers,
+The system's architecture is super simple\&. There are only two layers,
 consisting of the linenoise core, and of the binding sitting on
-top. The user sees only the binding, and nothing else.
+top\&. The user sees only the binding, and nothing else\&.
 .SH AUTHORS
-\fIAndreas Kupries\fR [https://github.com/andreas-kupries/] (Tcl Binding),
-\fISteve Bennett\fR [https://github.com/msteveb/] (extended linenoise C library),
-\fISalvatore Sanfilippo\fR [https://github.com/antirez/] (Antirez, original linenoise C library).
+\fIAndreas Kupries\fR [https://github\&.com/andreas-kupries/] (Tcl Binding),
+\fISteve Bennett\fR [https://github\&.com/msteveb/] (extended linenoise C library),
+\fISalvatore Sanfilippo\fR [https://github\&.com/antirez/] (Antirez, original linenoise C library)\&.
 .SH "BUGS, IDEAS, FEEDBACK"
 This document, and the package it describes, will undoubtedly contain
-bugs and other problems.
+bugs and other problems\&.
 Please report them at the
-\fIIssues tracker\fR [https://github.com/andreas-kupries/tcl-linenoise/issues].
+\fIIssues tracker\fR [https://github\&.com/andreas-kupries/tcl-linenoise/issues]\&.
 Ideas for enhancements you may have for either package, application,
 and/or the documentation are also very welcome and should be reported
-at the \fIIssues tracker\fR [https://github.com/andreas-kupries/tcl-linenoise/issues] as well.
+at the \fIIssues tracker\fR [https://github\&.com/andreas-kupries/tcl-linenoise/issues] as well\&.
 .SH KEYWORDS
 console, edit line, line editor, line reading, linenoise, raw mode, read line, terminal, tty
 .SH CATEGORY
