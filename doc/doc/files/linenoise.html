@@ -92,7 +92,7 @@
     }
 --></style>
 </head>
-<! -- Generated from file '/net/nas/data/andreask/Dev/Linenoise/tcl-linenoise/embedded/www/doc/files/linenoise.html' by tcllib/doctools with format 'html'
+<! -- Generated from file '/home/aku/Projects/Linenoise/dev-tcl/embedded/www/doc/files/linenoise.html' by tcllib/doctools with format 'html'
    -->
 <! -- Copyright &copy; 2013 Andreas Kupries
    -->
@@ -100,13 +100,13 @@
    -->
 <body><div class="doctools">
 <hr> [
-  <a href="../../toc.html">Main Table Of Contents</a>
+   <a href="../../toc.html">Main Table Of Contents</a>
 | <a href="../toc.html">Table Of Contents</a>
 | <a href="../../index.html">Keyword Index</a>
-] <hr>
-<h1 class="title">linenoise(n) 0 doc &quot;Tcl Line Editor&quot;</h1>
+ ] <hr>
+<h1 class="title">linenoise(n) 1 doc &quot;Tcl Line Editor&quot;</h1>
 <div id="name" class="section"><h2><a name="name">Name</a></h2>
-<p>linenoise - Linenoise Package Reference</p>
+<p>linenoise - Linenoise - Package Reference</p>
 </div>
 <div id="toc" class="section"><h2><a name="toc">Table Of Contents</a></h2>
 <ul class="toc">
@@ -124,20 +124,21 @@
 <div id="synopsis" class="section"><h2><a name="synopsis">Synopsis</a></h2>
 <div class="synopsis">
 <ul class="requirements">
-<li>package require <b class="pkgname">Tcl 8.4</b></li>
-<li>package require <b class="pkgname">linenoise <span class="opt">?0?</span></b></li>
+<li>package require <b class="pkgname">Tcl 8.5</b></li>
+<li>package require <b class="pkgname">linenoise <span class="opt">?1?</span></b></li>
 </ul>
 <ul class="syntax">
 <li><a href="#1"><b class="cmd">linenoise cmdloop</b> <span class="opt">?options...?</span></a></li>
-<li><a href="#2"><b class="cmd">linenoise hidden</b> <span class="opt">?<i class="arg">enable</i>?</span></a></li>
-<li><a href="#3"><b class="cmd">linenoise history add</b> <i class="arg">string</i></a></li>
-<li><a href="#4"><b class="cmd">linenoise history clear</b></a></li>
-<li><a href="#5"><b class="cmd">linenoise history list</b></a></li>
-<li><a href="#6"><b class="cmd">linenoise history load</b> <i class="arg">path</i></a></li>
-<li><a href="#7"><b class="cmd">linenoise history maxsize</b> <span class="opt">?<i class="arg">n</i>?</span></a></li>
-<li><a href="#8"><b class="cmd">linenoise history save</b> <i class="arg">path</i></a></li>
-<li><a href="#9"><b class="cmd">linenoise history size</b></a></li>
-<li><a href="#10"><b class="cmd">linenoise prompt</b> <span class="opt">?options...?</span></a></li>
+<li><a href="#2"><b class="cmd">linenoise columns</b></a></li>
+<li><a href="#3"><b class="cmd">linenoise hidden</b> <span class="opt">?<i class="arg">enable</i>?</span></a></li>
+<li><a href="#4"><b class="cmd">linenoise history add</b> <i class="arg">string</i></a></li>
+<li><a href="#5"><b class="cmd">linenoise history clear</b></a></li>
+<li><a href="#6"><b class="cmd">linenoise history list</b></a></li>
+<li><a href="#7"><b class="cmd">linenoise history load</b> <i class="arg">path</i></a></li>
+<li><a href="#8"><b class="cmd">linenoise history maxsize</b> <span class="opt">?<i class="arg">n</i>?</span></a></li>
+<li><a href="#9"><b class="cmd">linenoise history save</b> <i class="arg">path</i></a></li>
+<li><a href="#10"><b class="cmd">linenoise history size</b></a></li>
+<li><a href="#11"><b class="cmd">linenoise prompt</b> <span class="opt">?options...?</span></a></li>
 </ul>
 </div>
 </div>
@@ -160,7 +161,8 @@ command.</p>
 <dd><p>This command implements the core of a REPL (read-eval-print
 loop). While the defaults of the various options are geared towards
 the REPL of a Tcl shell, other types of REPL can implemented just fine
-by overriding them with the proper callbacks.</p>
+by overriding them with the proper callbacks. By default the loop can
+be aborted only by entering Control-C on the keyboard, or equivalent.</p>
 <p>The recognized options are</p>
 <dl class="options">
 <dt><b class="option">-complete</b> cmdprefix</dt>
@@ -182,6 +184,10 @@ delivered to option <b class="option">-report</b> for printing. Errors thrown by
 the execution are caught and printed through <b class="option">-report</b> as well.
 The default value simply runs the command in the context calling the
 REPL.</p></dd>
+<dt><b class="option">-exit</b> cmdprefix</dt>
+<dd><p>The value of this option is a command prefix taking no arguments and
+returning a boolean value indicating if the command loop should be
+stopped (<b class="const">true</b>), or not. The default value never stops the loop.</p></dd>
 <dt><b class="option">-history</b> boolean</dt>
 <dd><p>The value of this option specifies if the command should put the
 entered strings into the history (<b class="const">true</b>), or not. The default
@@ -206,12 +212,16 @@ itself, and &quot;printing&quot; this data in some way.
 The default value prints ok result to stdout and fail results to
 stderr.</p></dd>
 </dl></dd>
-<dt><a name="2"><b class="cmd">linenoise hidden</b> <span class="opt">?<i class="arg">enable</i>?</span></a></dt>
+<dt><a name="2"><b class="cmd">linenoise columns</b></a></dt>
+<dd><p>This command returns the current width of the console window the
+package is talking to. This enables the user to adapt its output (for
+example help texts) to the console.</p></dd>
+<dt><a name="3"><b class="cmd">linenoise hidden</b> <span class="opt">?<i class="arg">enable</i>?</span></a></dt>
 <dd><p>This command returns the current state of the system's hidden flag,
 which is <b class="const">true</b> if hidden input is activated, and <b class="const">false</b>
 otherwise. If the argument is specified it has to be a boolean value
 which becomes the new value of the flag. This new value is then returned.</p></dd>
-<dt><a name="3"><b class="cmd">linenoise history add</b> <i class="arg">string</i></a></dt>
+<dt><a name="4"><b class="cmd">linenoise history add</b> <i class="arg">string</i></a></dt>
 <dd><p>This command adds the <i class="arg">string</i> to the history. The result of the
 command is a boolean flag, <b class="const">true</b> if the addition suceeded, and
 <b class="const">false</b> otherwise. The string will not be added if it is
@@ -220,17 +230,17 @@ adjacent duplicates.</p>
 <p>The history reaching its maximal size does not prevent the
 addition of the string. It simply bumps of the oldest entry to make
 room for the new.</p></dd>
-<dt><a name="4"><b class="cmd">linenoise history clear</b></a></dt>
+<dt><a name="5"><b class="cmd">linenoise history clear</b></a></dt>
 <dd><p>This command clears (empties) the history.</p></dd>
-<dt><a name="5"><b class="cmd">linenoise history list</b></a></dt>
+<dt><a name="6"><b class="cmd">linenoise history list</b></a></dt>
 <dd><p>This command returns a list containing the history. The first element
 of the result is the oldest entry in the history, and the last element
 the newest.</p></dd>
-<dt><a name="6"><b class="cmd">linenoise history load</b> <i class="arg">path</i></a></dt>
+<dt><a name="7"><b class="cmd">linenoise history load</b> <i class="arg">path</i></a></dt>
 <dd><p>This command loads the contents of the file at <i class="arg">path</i> into the
 history. Note, this is not a replacement, but an appending, like with
 <b class="cmd">linenoise history add</b>.</p></dd>
-<dt><a name="7"><b class="cmd">linenoise history maxsize</b> <span class="opt">?<i class="arg">n</i>?</span></a></dt>
+<dt><a name="8"><b class="cmd">linenoise history maxsize</b> <span class="opt">?<i class="arg">n</i>?</span></a></dt>
 <dd><p>This command returns the current maximal size of the system's history,
 as a positive integer number greater than zero. If the argument is
 specified it has to be a positive integer number greater than zero,
@@ -239,14 +249,14 @@ then returned.</p>
 <p>If the new maximal size is less than the current size of the
 history the oldest entries are discarded to bring the history down to
 the new size.</p></dd>
-<dt><a name="8"><b class="cmd">linenoise history save</b> <i class="arg">path</i></a></dt>
+<dt><a name="9"><b class="cmd">linenoise history save</b> <i class="arg">path</i></a></dt>
 <dd><p>This command takes the history and stores it into the file at the
 specified <i class="arg">path</i>. The previous contents of the file are written
 over and lost.</p></dd>
-<dt><a name="9"><b class="cmd">linenoise history size</b></a></dt>
+<dt><a name="10"><b class="cmd">linenoise history size</b></a></dt>
 <dd><p>This command returns the number of entries in the history, as positive
 integer number (including zero).</p></dd>
-<dt><a name="10"><b class="cmd">linenoise prompt</b> <span class="opt">?options...?</span></a></dt>
+<dt><a name="11"><b class="cmd">linenoise prompt</b> <span class="opt">?options...?</span></a></dt>
 <dd><p>This command implements a one-shot prompt (instead of a REPL),
 returning the string entered by the user after completing the
 interaction.</p>

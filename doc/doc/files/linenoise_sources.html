@@ -92,7 +92,7 @@
     }
 --></style>
 </head>
-<! -- Generated from file '/net/nas/data/andreask/Dev/Linenoise/tcl-linenoise/embedded/www/doc/files/linenoise_sources.html' by tcllib/doctools with format 'html'
+<! -- Generated from file '/home/aku/Projects/Linenoise/dev-tcl/embedded/www/doc/files/linenoise_sources.html' by tcllib/doctools with format 'html'
    -->
 <! -- Copyright &copy; 2013 Andreas Kupries
    -->
@@ -100,10 +100,10 @@
    -->
 <body><div class="doctools">
 <hr> [
-  <a href="../../toc.html">Main Table Of Contents</a>
+   <a href="../../toc.html">Main Table Of Contents</a>
 | <a href="../toc.html">Table Of Contents</a>
 | <a href="../../index.html">Keyword Index</a>
-] <hr>
+ ] <hr>
 <h1 class="title">linenoise_sources(n) 1 doc &quot;Tcl Line Editor&quot;</h1>
 <div id="name" class="section"><h2><a name="name">Name</a></h2>
 <p>linenoise_sources - Linenoise - How To Get The Sources</p>
@@ -141,13 +141,15 @@ extend and modify it.</p>
 <p>The official repository for Linenoise itself can be found at
 <a href="http://andreas-kupries.github.com/tcl-linenoise">http://andreas-kupries.github.com/tcl-linenoise</a>.</p>
 <p>The repository of the linenoise C library required by the
-binding can be found at
-<a href="http://andreas-kupries.github.com/linenoise">http://andreas-kupries.github.com/linenoise</a>.
-This is a fork of the repository at
-<a href="http://github.com/msteveb/linenoise">http://github.com/msteveb/linenoise</a>.</p>
-<p>It is recommended to use my repository as it may contain
-features, changes and bugfixes required by the binding and not
-available in the original.</p>
+binding can be found at                          <a href="http://github.com/andreas-kupries/linenoise">http://github.com/andreas-kupries/linenoise</a>.</p>
+<p>This is a fork of the repository at       <a href="http://github.com/msteveb/linenoise">http://github.com/msteveb/linenoise</a>.</p>
+<p>It in turn is a fork of the repository at <a href="http://github.com/antirez/linenoise">http://github.com/antirez/linenoise</a>.</p>
+<p>My repository is prefered for building as it may contain
+features, changes and bugfixes required by this binding which are not
+available in Steve Bennet's repository (This currently is only support
+for hidden input, i.e. password prompts and the like). Antirez's
+repository unfortunately has even less features, its use is not
+recommended.</p>
 </div>
 <div id="section3" class="section"><h2><a name="section3">Retrieval</a></h2>
 <p>Assuming that you simply wish to look at the sources, or build a
@@ -169,10 +171,11 @@ retrieved via:</p>
 <pre class="example">
     # Get the C library sources
     git clone http://github.com/andreas-kupries/linenoise
+    # or from the other repositories mentioned above.
     # Get the sources of the tcl binding
     git clone http://github.com/andreas-kupries/tcl-linenoise
 </pre>
-<p>to get a checkout of the head of the trunks.</p>
+<p>The result is a checkout of the head of the master branches.</p>
 </div>
 <div id="section5" class="section"><h2><a name="section5">Authors</a></h2>
 <p><a href="https://github.com/andreas-kupries/">Andreas Kupries</a> (Tcl Binding),
