@@ -238,7 +238,7 @@ Database Class:	\\fB\\$3\\fR
 .de UL
 \\$1\l'|0\(ul'\\$2
 ..
-.TH "linenoise_changes" n 3\&.1 doc "Tcl Line Editor"
+.TH "linenoise_changes" n 1 doc "Tcl Line Editor"
 .BS
 .SH NAME
 linenoise_changes \- Linenoise Changes

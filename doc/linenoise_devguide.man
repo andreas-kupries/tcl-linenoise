@@ -1,5 +1,6 @@
 [comment {-*- tcl -*- doctools manpage}]
-[manpage_begin linenoise_devguide n 1]
+[include include/version.inc]
+[manpage_begin linenoise_devguide n [vset VERSION]]
 [include include/module.inc]
 [titledesc {Linenoise - The Developer's Guide}]
 [description]

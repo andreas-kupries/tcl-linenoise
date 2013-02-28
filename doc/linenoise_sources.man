@@ -1,5 +1,6 @@
 [comment {-*- tcl -*- doctools manpage}]
-[manpage_begin linenoise_sources n 1]
+[include include/version.inc]
+[manpage_begin linenoise_sources n [vset VERSION]]
 [include include/module.inc]
 [titledesc {Linenoise - How To Get The Sources}]
 [description]

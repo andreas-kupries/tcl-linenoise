@@ -315,7 +315,7 @@ if {![critcl::load]} {
 
 # # ## ### ##### ######## ############# #####################
 
-package provide linenoise 0
+package provide linenoise 1
 return
 
 # vim: set sts=4 sw=4 tw=80 et ft=tcl:

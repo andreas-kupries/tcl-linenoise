@@ -1,5 +1,6 @@
 [comment {-*- tcl -*- doctools manpage}]
-[manpage_begin linenoise_changes n 3.1]
+[include include/version.inc]
+[manpage_begin linenoise_changes n [vset VERSION]]
 [include include/module.inc]
 [titledesc {Linenoise Changes}]
 [description]

@@ -238,14 +238,14 @@ Database Class:	\\fB\\$3\\fR
 .de UL
 \\$1\l'|0\(ul'\\$2
 ..
-.TH "linenoise" n 0 doc "Tcl Line Editor"
+.TH "linenoise" n 1 doc "Tcl Line Editor"
 .BS
 .SH NAME
 linenoise \- Linenoise - Package Reference
 .SH SYNOPSIS
 package require \fBTcl  8\&.5\fR
 .sp
-package require \fBlinenoise  ?0?\fR
+package require \fBlinenoise  ?1?\fR
 .sp
 \fBlinenoise cmdloop\fR ?options\&.\&.\&.?
 .sp
