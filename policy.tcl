@@ -186,6 +186,7 @@ namespace eval linenoise::history {
 	load    ::linenoise::history::load
 	maxsize ::linenoise::history::maxsize
 	save    ::linenoise::history::save
+	set     ::linenoise::history_set
 	size    ::linenoise::history_size
     }
 }

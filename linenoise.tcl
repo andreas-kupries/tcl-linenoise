@@ -3,7 +3,7 @@
 ## A Tcl Binding to antirez's linenoise (Minimal line-editing)
 ## as modified and extended by Steve Bennett of Workware.
 ##
-## Copyright (c) 2013 Andreas Kupries http://wiki.tcl.tk/andreas%20kupries
+## Copyright (c) 2013-2014 Andreas Kupries http://wiki.tcl.tk/andreas%20kupries
 
 # # ## ### ##### ######## ############# #####################
 ##
@@ -174,6 +174,10 @@ critcl::ccode {
 # - Saving the history to file (OS native path).
 # - Setting and retrieving the maximal history size.
 # - Retrieving current size of the history.
+# - Retrieving the current contents of the history as a Tcl list.
+#   (Saving the history to memory)
+# - Setting the history from a Tcl list.
+#   (Loading the history from memory)
 
 critcl::cproc linenoise::history_add {char* line} boolean {
     return linenoiseHistoryAdd (line);
@@ -215,6 +219,34 @@ critcl::cproc linenoise::history_size {} int {
 
     (void) linenoiseHistory (&len);
     return len;
+}
+
+critcl::cproc linenoise::history_set {
+    Tcl_Interp* ip
+    Tcl_Obj* list
+} ok {
+    /* Replace current history with the entries in the specified list */
+
+    int i;
+    int       lc;
+    Tcl_Obj** lv;
+
+    int r = Tcl_ListObjGetElements (ip, list, &lc, &lv);
+
+    if (r != TCL_OK) {
+	return r;
+    }
+
+    /* Inlined history_clear */
+    /* msteveb/linenoise extension */
+    linenoiseHistoryFree ();
+    /* bugfix! */
+    history_len = 0;
+
+    for (i=0; i < lc; i++) {
+       linenoiseHistoryAdd (Tcl_GetString (lv [i]));
+    }
+    return r;
 }
 
 critcl::cproc linenoise::history_list {} Tcl_Obj* {
@@ -315,7 +347,7 @@ if {![critcl::load]} {
 
 # # ## ### ##### ######## ############# #####################
 
-package provide linenoise 1.0.1
+package provide linenoise 1.1
 return
 
 # vim: set sts=4 sw=4 tw=80 et ft=tcl:
