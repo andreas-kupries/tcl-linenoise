@@ -266,6 +266,13 @@ if {[llength [info commands ::linenoise::hidden_*]]} {
     }
 }
 
+if {![llength [info commands ::linenoise::lines]]} {
+    # Querying terminal height is not supported.
+    proc ::linenoise::hidden {{new {}}} {
+	return -code error "This build of linenoise does not support querying terminal height"
+    }
+}
+
 proc ::linenoise::cmdloop {args} {
     array set config {
 	-history   0
@@ -381,6 +388,7 @@ proc ::linenoise::cmdloop {args} {
 namespace eval linenoise {
     # primitive commands:
     # - columns
+    # - lines
     # - prompt (with completion) | wrapped
     # - history_add              | sub-ensemble, see above.
     # - history_clear            |
@@ -394,6 +402,6 @@ namespace eval linenoise {
     # porcelain
     # - cmdloop
 
-    namespace export columns history hidden prompt cmdloop
+    namespace export columns history hidden lines prompt cmdloop
     namespace ensemble create
 }

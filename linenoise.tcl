@@ -34,6 +34,7 @@ if {![critcl::compiling]} {
 }
 
 set hashidden 1
+set haslines  1
 
 # # ## ### ##### ######## ############# #####################
 ## Administrivia
@@ -294,6 +295,15 @@ critcl::cproc linenoise::columns {} int {
     return linenoiseColumns ();
 }
 
+if {$haslines} {
+    critcl::msg { Querying terminal height is supported.}
+    critcl::cproc linenoise::lines {} int {
+	return linenoiseLines ();
+    }
+} else {
+    critcl::msg { Quering terminal height is NOT supported.}
+}
+
 critcl::cproc linenoise::Prompt {
     Tcl_Interp* interp
     char*       prompt
@@ -347,7 +357,7 @@ if {![critcl::load]} {
 
 # # ## ### ##### ######## ############# #####################
 
-package provide linenoise 1.1
+package provide linenoise 1.2
 return
 
 # vim: set sts=4 sw=4 tw=80 et ft=tcl:
