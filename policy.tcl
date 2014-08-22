@@ -1,6 +1,6 @@
 ## -*- tcl -*-
 # # ## ### ##### ######## ############# #####################
-## Copyright (C) 2013 Andreas Kupries
+## Copyright (C) 2013-2014 Andreas Kupries
 #
 ## This is the policy file aggregating the C primitives into a tcl-ish
 ## interface.
@@ -196,10 +196,11 @@ namespace eval linenoise::history {
 ## sub-ensemble.
 
 proc ::linenoise::prompt {args} {
+    variable hdefault
+    set       config(-hidden) $hdefault
     array set config {
 	-prompt    {% }
 	-history   0
-	-hidden    0
 	-complete  {}
     }
 
@@ -209,7 +210,10 @@ proc ::linenoise::prompt {args} {
 	    -prompt   {
 		set config($o) $v
 	    }
-	    -hidden -
+	    -hidden {
+		CheckHidden
+		set config($o) $v
+	    }
 	    -history {
 		if {![string is boolean -strict $v]} {
 		    return -code error \
@@ -242,23 +246,51 @@ proc ::linenoise::prompt {args} {
 }
 
 if {[llength [info commands ::linenoise::hidden_*]]} {
-    # Hidden input is supported
+    # Hidden input is generally supported.
+
+    if {[llength [info commands ::linenoise::hidden_extended]] &&
+	[::linenoise::hidden_extended]} {
+	# Extended modes (stars, all) are supported.
+	set ::linenoise::hdefault no
+
+	proc ::linenoise::CheckHidden {x} {
+	    if {$x in {no stars all}} return
+	    return -code error "Expected one of \"all\", \"no\", or \"stars\", got \"$x\""
+	}
+    } else {
+	# Only plain boolean (on, off) is supported.
+	set ::linenoise::hdefault 0
+
+	proc ::linenoise::CheckHidden {x} {
+	    if {[string is boolean -strict $x]} return
+	    return -code error "Expected a boolean, got \"$x\""
+	}
+    }
+
     proc ::linenoise::hidden {{new {}}} {
 	if {[llength [info level 0]] == 2} {
-	    if {![string is boolean -strict $new]} {
-		return -code error "Expected a boolean, got \"$new\""
-	    }
+	    CheckHidden $new
 	    ::linenoise::hidden_set $new
 	}
 	return [::linenoise::hidden_get]
     }
 } else {
+    set ::linenoise::hdefault 0
+
     # Hidden input is not supported.
+    # Inspection always returns 'off'.
+    # Trying to activate it causes an error.
+    # Deactivation is ok however, as it is a no-op.
+
+
+    proc ::linenoise::CheckHidden {x} {
+	if {[string is boolean -strict $x]} return
+	return -code error "Expected a boolean, got \"$x\""
+    }
+
     proc ::linenoise::hidden {{new {}}} {
 	if {[llength [info level 0]] == 2} {
-	    if {![string is boolean -strict $new]} {
-		return -code error "Expected a boolean, got \"$new\""
-	    }
+	    CheckHidden $new
 	    if {!$new} return
 	    return -code error "This build of linenoise does not support hidden input"
 	}
@@ -268,12 +300,14 @@ if {[llength [info commands ::linenoise::hidden_*]]} {
 
 if {![llength [info commands ::linenoise::lines]]} {
     # Querying terminal height is not supported.
-    proc ::linenoise::hidden {{new {}}} {
+    proc ::linenoise::lines {{new {}}} {
 	return -code error "This build of linenoise does not support querying terminal height"
     }
 }
 
 proc ::linenoise::cmdloop {args} {
+    variable hdefault
+
     array set config {
 	-history   0
 	-prompt1 {apply {{} {
@@ -339,7 +373,7 @@ proc ::linenoise::cmdloop {args} {
 	set prompt [{*}$config(-prompt1)]
 	set buffer {}
 	while 1 {
-	    hidden 0
+	    hidden $hdefault
 	    if {[catch {
 		# Inlined low-level command.
 		Prompt $prompt $config(-complete)

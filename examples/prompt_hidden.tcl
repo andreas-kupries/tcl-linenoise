@@ -14,7 +14,13 @@ linenoise history add upsilon
 puts "History: [linenoise history size]"
 puts "Hidden:  [linenoise hidden]"
 
-set password [linenoise prompt -hidden 1 -prompt "password> "]
+if {[linenoise::hidden_extended]} {
+    set on stars
+} else {
+    set on 1
+}
+
+set password [linenoise prompt -hidden $on -prompt "password> "]
 
 puts "Hidden:  [linenoise hidden]"
 puts "Entered: $password"

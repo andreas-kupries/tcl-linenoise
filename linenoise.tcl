@@ -33,8 +33,14 @@ if {![critcl::compiling]} {
     error "Unable to build linenoise, no proper compiler found."
 }
 
-set hashidden 1
-set haslines  1
+# # ## ### ##### ######## ############# #####################
+## Configuration settings.
+
+# TODO: See if we can inspect the linenoise.[ch] files to
+# automatically determine these settings - Would be a critcl feature.
+set hashidden 1 ; # Able to hide input.
+set exthidden 1 ; # Extended hidden input (fully hidden)
+set haslines  1 ; # Able to query terminal height.
 
 # # ## ### ##### ######## ############# #####################
 ## Administrivia
@@ -275,12 +281,47 @@ critcl::cproc linenoise::history_list {} Tcl_Obj* {
 ## - prompt for input, possibly with completion
 
 if {$hashidden} {
-    critcl::msg { Hidden input is supported.}
-    critcl::cproc linenoise::hidden_set {boolean enable} void {
-	linenoiseSetHidden (enable);
-    }
-    critcl::cproc linenoise::hidden_get {} boolean {
-	return linenoiseGetHidden ();
+    if {$exthidden} {
+	critcl::msg { Extended hidden input is supported.}
+	# Extended => modes = {no, (echo)stars, all|full|noecho}
+
+critcl::msg "\n\t$argv0, [info nameofexecutable]\n"
+
+	critcl::buildrequirement {
+	    package require critcl::enum
+	}
+
+	critcl::enum::def hiddenmode {
+	    LN_HIDDEN_NO   "no"
+	    LN_HIDDEN_STAR "stars"
+	    LN_HIDDEN_ALL  "all"
+	}
+	# Tcl_Obj* hiddenmode_ToObj      (interp, hiddenmode_names code);
+	# int      hiddenmode_GetFromObj (interp, obj, flags, &code);
+	# result-type: hiddenmode
+	# arg-type:    hiddenmode
+	critcl::cproc linenoise::hidden_set {hiddenmode enable} void {
+	    linenoiseSetHidden (enable);
+	}
+	critcl::cproc linenoise::hidden_get {} hiddenmode {
+	    return linenoiseGetHidden ();
+	}
+	critcl::cproc linenoise::hidden_extended {} boolean {
+	    return 1;
+	}
+    } else {
+	critcl::msg { Basic hidden input is supported.}
+	# Basic hidden => enable is boolean <=> on/off.
+
+	critcl::cproc linenoise::hidden_set {boolean enable} void {
+	    linenoiseSetHidden (enable);
+	}
+	critcl::cproc linenoise::hidden_get {} boolean {
+	    return linenoiseGetHidden ();
+	}
+	critcl::cproc linenoise::hidden_extended {} boolean {
+	    return 0;
+	}
     }
 } else {
     critcl::msg { Hidden input is NOT supported.}
@@ -357,7 +398,7 @@ if {![critcl::load]} {
 
 # # ## ### ##### ######## ############# #####################
 
-package provide linenoise 1.2
+package provide linenoise 1.3
 return
 
 # vim: set sts=4 sw=4 tw=80 et ft=tcl:
