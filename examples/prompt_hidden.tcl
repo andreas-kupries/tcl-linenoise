@@ -15,12 +15,13 @@ puts "History: [linenoise history size]"
 puts "Hidden:  [linenoise hidden]"
 
 if {[linenoise::hidden_extended]} {
-    set on stars
+    #set hidden stars
+    set hidden all
 } else {
-    set on 1
+    set hidden yes
 }
 
-set password [linenoise prompt -hidden $on -prompt "password> "]
+set password [linenoise prompt -hidden $hidden -prompt "password> "]
 
 puts "Hidden:  [linenoise hidden]"
 puts "Entered: $password"

@@ -285,19 +285,17 @@ if {$hashidden} {
 	critcl::msg { Extended hidden input is supported.}
 	# Extended => modes = {no, (echo)stars, all|full|noecho}
 
-critcl::msg "\n\t$argv0, [info nameofexecutable]\n"
-
 	critcl::buildrequirement {
-	    package require critcl::enum
+	    package require critcl::emap
 	}
 
-	critcl::enum::def hiddenmode {
-	    LN_HIDDEN_NO   "no"
-	    LN_HIDDEN_STAR "stars"
-	    LN_HIDDEN_ALL  "all"
-	}
-	# Tcl_Obj* hiddenmode_ToObj      (interp, hiddenmode_names code);
-	# int      hiddenmode_GetFromObj (interp, obj, flags, &code);
+	# no = 0, stars = 1, all = 2
+	# emap extension: case-insensitive acceptance.
+	critcl::emap::def hiddenmode {
+	            no  0 n 0 off 0 false 0 0 0
+	    stars 1 yes 1 y 1 on  1 true  1 1 1
+	    all   2
+	} -nocase
 	# result-type: hiddenmode
 	# arg-type:    hiddenmode
 	critcl::cproc linenoise::hidden_set {hiddenmode enable} void {

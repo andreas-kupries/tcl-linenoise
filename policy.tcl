@@ -196,11 +196,10 @@ namespace eval linenoise::history {
 ## sub-ensemble.
 
 proc ::linenoise::prompt {args} {
-    variable hdefault
-    set       config(-hidden) $hdefault
     array set config {
 	-prompt    {% }
 	-history   0
+	-hidden    0
 	-complete  {}
     }
 
@@ -211,7 +210,7 @@ proc ::linenoise::prompt {args} {
 		set config($o) $v
 	    }
 	    -hidden {
-		CheckHidden
+		CheckHidden $v
 		set config($o) $v
 	    }
 	    -history {
@@ -251,16 +250,13 @@ if {[llength [info commands ::linenoise::hidden_*]]} {
     if {[llength [info commands ::linenoise::hidden_extended]] &&
 	[::linenoise::hidden_extended]} {
 	# Extended modes (stars, all) are supported.
-	set ::linenoise::hdefault no
-
 	proc ::linenoise::CheckHidden {x} {
-	    if {$x in {no stars all}} return
-	    return -code error "Expected one of \"all\", \"no\", or \"stars\", got \"$x\""
+	    if {[string is boolean -strict $x]} return
+	    if {$x in {stars all}} return
+	    return -code error "Expected a boolean, or one of \"all\", \"no\", or \"stars\", got \"$x\""
 	}
     } else {
 	# Only plain boolean (on, off) is supported.
-	set ::linenoise::hdefault 0
-
 	proc ::linenoise::CheckHidden {x} {
 	    if {[string is boolean -strict $x]} return
 	    return -code error "Expected a boolean, got \"$x\""
@@ -275,13 +271,10 @@ if {[llength [info commands ::linenoise::hidden_*]]} {
 	return [::linenoise::hidden_get]
     }
 } else {
-    set ::linenoise::hdefault 0
-
     # Hidden input is not supported.
     # Inspection always returns 'off'.
     # Trying to activate it causes an error.
     # Deactivation is ok however, as it is a no-op.
-
 
     proc ::linenoise::CheckHidden {x} {
 	if {[string is boolean -strict $x]} return
@@ -306,8 +299,6 @@ if {![llength [info commands ::linenoise::lines]]} {
 }
 
 proc ::linenoise::cmdloop {args} {
-    variable hdefault
-
     array set config {
 	-history   0
 	-prompt1 {apply {{} {
@@ -373,7 +364,7 @@ proc ::linenoise::cmdloop {args} {
 	set prompt [{*}$config(-prompt1)]
 	set buffer {}
 	while 1 {
-	    hidden $hdefault
+	    hidden no
 	    if {[catch {
 		# Inlined low-level command.
 		Prompt $prompt $config(-complete)
