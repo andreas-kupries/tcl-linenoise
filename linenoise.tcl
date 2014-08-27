@@ -289,12 +289,13 @@ if {$hashidden} {
 	    package require critcl::emap
 	}
 
-	# no = 0, stars = 1, all = 2
-	# emap extension: case-insensitive acceptance.
+	# visible == no  == 0,
+	# all     == yes == 1, -- default is full supression.
+	# stars   == 2
 	critcl::emap::def hiddenmode {
 	            no  0 n 0 off 0 false 0 0 0
-	    stars 1 yes 1 y 1 on  1 true  1 1 1
-	    all   2
+	    all   1 yes 1 y 1 on  1 true  1 1 1
+	    stars 2
 	} -nocase
 	# result-type: hiddenmode
 	# arg-type:    hiddenmode
