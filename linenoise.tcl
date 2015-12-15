@@ -19,28 +19,21 @@
 ##
 # Notes and ideas regarding the underlying linenoise C library
 #
-# - Note: Do I need the utf support, or is that term specific.
+# - Note: Do I need the utf support, or is that term specific?
 
 # # ## ### ##### ######## ############# #####################
 ## Requisites
 
 package require critcl 3.1
-critcl::buildrequirement {}
+critcl::buildrequirement {
+    package require critcl::util 1.1 ; # locate
+}
 
 # # ## ### ##### ######## ############# #####################
 
 if {![critcl::compiling]} {
     error "Unable to build linenoise, no proper compiler found."
 }
-
-# # ## ### ##### ######## ############# #####################
-## Configuration settings.
-
-# TODO: See if we can inspect the linenoise.[ch] files to
-# automatically determine these settings - Would be a critcl feature.
-set hashidden 1 ; # Able to hide input.
-set exthidden 1 ; # Extended hidden input (fully hidden)
-set haslines  1 ; # Able to query terminal height.
 
 # # ## ### ##### ######## ############# #####################
 ## Administrivia
@@ -82,20 +75,47 @@ critcl::meta location/c-library/origin \
 critcl::tcl 8.5
 
 # # ## ### ##### ######## ############# #####################
-## Find the linenoise sources (via its headers).
+## Find the linenoise sources (via its headers), and figure out their
+## configuration.
 #
-# We try to specify both paths for where we expect to find the sources
-# of linenoise itself. Both are given relative to the directory of
-# this file.
+# We specify both paths for where we expect to find the sources of
+# linenoise itself. Both are given relative to the directory of this
+# file.
 #
 # (1) A sub directory in our sources.
 # (2) A sibling directory to our sources.
 
-if {[catch {
-    critcl::cheaders linenoise/linenoise.h
-}]} {
-    critcl::cheaders ../linenoise/linenoise.h
+critcl::msg "\n"
+# With Tcl 8.5+ CK could be replaced by a lambda.
+proc PB {label x} { return "${label}: [expr {$x ? "yes" : "no"}]" }
+proc CK {p} {
+    # Check for "linenoiseAddCompletion", make sure that the found
+    # header is the correct one.
+    set lines [split [critcl::Cat $p] \n]
+    set n [llength [critcl::Grep *linenoiseAddCompletion* $lines]]
+    if {!$n} { return 0 }
+
+    # Additional checks to figure out the libraries' configuration.
+    set ::hashidden [llength [critcl::Grep *linenoiseGetHidden* $lines]]
+    set ::exthidden [llength [critcl::Grep *LN_HIDDEN_STAR* $lines]]
+    set ::haslines  [llength [critcl::Grep *linenoiseLines* $lines]]
+
+    return 1
 }
+
+critcl::cheaders [critcl::util::locate "Location of Linenoise    " {
+    linenoise/linenoise.h
+    ../linenoise/linenoise.h
+} ::CK]
+
+#                Location of Linenoise
+critcl::msg [PB {Support for hidden input } $hashidden]
+critcl::msg [PB {Extended hidden input    } $exthidden]
+critcl::msg [PB {Access to terminal height} $haslines]
+
+rename CK {}
+rename PB {}
+critcl::msg ""
 
 # # ## ### ##### ######## ############# #####################
 ## Declare the Tcl layer aggregating the C primitives into a Tclish
@@ -282,7 +302,7 @@ critcl::cproc linenoise::history_list {} Tcl_Obj* {
 
 if {$hashidden} {
     if {$exthidden} {
-	critcl::msg { Extended hidden input is supported.}
+	critcl::msg -nonewline { (Use: Extended hidden input)}
 	# Extended => modes = {no, (echo)stars, all|full|noecho}
 
 	critcl::buildrequirement {
@@ -309,7 +329,7 @@ if {$hashidden} {
 	    return 1;
 	}
     } else {
-	critcl::msg { Basic hidden input is supported.}
+	critcl::msg -nonewline { (Use: Basic hidden input)}
 	# Basic hidden => enable is boolean <=> on/off.
 
 	critcl::cproc linenoise::hidden_set {boolean enable} void {
@@ -323,7 +343,7 @@ if {$hashidden} {
 	}
     }
 } else {
-    critcl::msg { Hidden input is NOT supported.}
+    critcl::msg -nonewline { (Use: NO hidden input)}
 }
 
 if 0 {# may we have this ?
@@ -336,12 +356,12 @@ critcl::cproc linenoise::columns {} int {
 }
 
 if {$haslines} {
-    critcl::msg { Querying terminal height is supported.}
+    critcl::msg -nonewline { (Use: Query terminal height)}
     critcl::cproc linenoise::lines {} int {
 	return linenoiseLines ();
     }
 } else {
-    critcl::msg { Quering terminal height is NOT supported.}
+    critcl::msg -nonewline { (Use: NO querying terminal height)}
 }
 
 critcl::cproc linenoise::Prompt {
