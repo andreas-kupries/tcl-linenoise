@@ -4,7 +4,7 @@
 
 # Website
 
- *  The main website of this project is http://andreas-kupries.github.com/tcl-linenoise
+ *  The main website of this project is https://andreas-kupries.github.io/tcl-linenoise
 
     It provides access to archives for various revisions and the full
     documentation, especially the guides to building and using it.
@@ -20,9 +20,9 @@
 
  *  Retrieve the sources:
 
-    ```% git clone http://github.com/andreas-kupries/tcllinenoise```
+    ```% git clone http://github.com/andreas-kupries/tcl-linenoise```
 
-    Your working directory now contains a directory ```tcllinenoise```.
+    Your working directory now contains a directory ```tcl-linenoise```.
 
  *  Build and install it:
 
@@ -50,7 +50,7 @@
 # Documentation
 
  *  Too much to cover here. Please go to
-    http://andreas-kupries.github.com/tcl-linenoise
+    https://andreas-kupries.github.io/tcl-linenoise
     for online reading, or the directories **embedded/www** and
     **embedded/man** for local copies of the documentation in HTML and
     nroff formats, respectively.
